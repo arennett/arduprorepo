@@ -1,0 +1,89 @@
+#include "Arduino.h"
+#include <SoftwareSerial.h>
+#include <tools.h>
+//The setup function is called once at startup of the sketch
+SoftwareSerial sSerial(10, 11);
+byte message[18+4];
+byte preamble[]  = {1,2,3,4};
+byte postamble[] = {4,3,2,1};
+byte preAmCount=0;
+byte postAmCount=0;
+byte dataCount=0;;
+bool dataCollect=false;
+
+
+//The setup function is called once at startup of the sketch
+void setup() {
+	Serial.begin(9600);
+	sSerial.begin(9600);
+
+}
+
+
+// The loop function is called in an endless loop
+void loop() {
+	if (sSerial.available()> 0) {
+		byte b= sSerial.read();
+		MPRINTSVAL("byte: " ,b);
+		if (dataCollect) {
+			if (dataCount < sizeof message) {
+				message[dataCount]=b;
+				dataCount++;
+			}else {
+				MPRINTSVAL("BUFFER OVERFLOW: DATA SIZE >=" ,sizeof message - sizeof postamble );
+				dataCollect=false;
+			}
+
+		}
+
+		if ( b == preamble[preAmCount] ) {
+			//MPRINTSVAL("PREAMBLE COUNT:",preAmCount);
+			if (preAmCount == (sizeof preamble) -1 ) {
+				MPRINTLN("PREAMBLE COMPLETE");
+				preAmCount=0;
+				dataCollect=true;
+
+
+
+
+				dataCount=0;
+			}else {
+				preAmCount++;
+			}
+		}else{
+			preAmCount=0;
+			if (b == preamble[preAmCount]) {
+				//MPRINTSVAL("PREAMBLE COUNT:",preAmCount);
+				preAmCount++;
+			}
+
+
+		}
+
+		if ( b == postamble[postAmCount] ) {
+					//MPRINTSVAL("POSTAMBLE COUNT:",postAmCount);
+					if (postAmCount == (sizeof postamble) -1 ) {
+						MPRINTLN("POSTAMBLE COMPLETE");
+						postAmCount=0;
+						dataCollect=false;
+						MPRINTSVAL("MESSAGE SIZE: "  ,dataCount - sizeof postamble );
+						dataCount=0;
+					}else {
+						postAmCount++;
+					}
+		}else{
+			postAmCount=0;
+			if (b == postamble[postAmCount]) {
+				//MPRINTSVAL("POSTAMBLE COUNT:",preAmCount);
+				postAmCount++;
+			}
+
+
+		}
+
+
+
+
+
+	}
+}
