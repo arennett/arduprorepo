@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>ToolsLibOld</name>
+	<name>SensoMaster</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -32,11 +32,6 @@
 	</natures>
 	<linkedResources>
 		<link>
-			<name>ToolsLib</name>
-			<type>2</type>
-			<location>C:/Users/User/Documents/Arduino/libraries/ToolsLib</location>
-		</link>
-		<link>
 			<name>core/core</name>
 			<type>2</type>
 			<locationURI>ECLIPSE_HOME/arduinoPlugin/packages/arduino/hardware/avr/1.6.20/cores/arduino</locationURI>
@@ -44,12 +39,27 @@
 		<link>
 			<name>core/variant</name>
 			<type>2</type>
-			<locationURI>ECLIPSE_HOME/arduinoPlugin/packages/arduino/hardware/avr/1.6.20/variants/eightanaloginputs</locationURI>
+			<locationURI>ECLIPSE_HOME/arduinoPlugin/packages/arduino/hardware/avr/1.6.20/variants/standard</locationURI>
+		</link>
+		<link>
+			<name>libraries/SensoLib</name>
+			<type>2</type>
+			<location>C:/Users/User/git/ardulibrepo/SensoLib</location>
+		</link>
+		<link>
+			<name>libraries/SerialMsgLib</name>
+			<type>2</type>
+			<location>C:/Users/User/git/ardulibrepo/SerialMsgLib</location>
 		</link>
 		<link>
 			<name>libraries/SoftwareSerial</name>
 			<type>2</type>
 			<locationURI>ECLIPSE_HOME/arduinoPlugin/packages/arduino/hardware/avr/1.6.20/libraries/SoftwareSerial</locationURI>
+		</link>
+		<link>
+			<name>libraries/ToolsLib2</name>
+			<type>2</type>
+			<location>C:/Users/User/git/ardulibrepo/ToolsLib2</location>
 		</link>
 	</linkedResources>
 </projectDescription>

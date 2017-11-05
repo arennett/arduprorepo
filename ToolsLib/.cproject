@@ -24,6 +24,10 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/ToolsLib/libraries/SoftwareSerial}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/ToolsLib/libraries/SoftwareSerial/src}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/ToolsLib/ToolsLib}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/ToolsLibOld/core/core}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/ToolsLibOld/core/variant}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/ToolsLibOld/libraries/SoftwareSerial}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/ToolsLibOld/libraries/SoftwareSerial/src}&quot;"/>
 								</option>
 								<inputType id="io.sloeber.compiler.cpp.sketch.input.918321482" name="CPP source files" superClass="io.sloeber.compiler.cpp.sketch.input"/>
 							</tool>
@@ -34,6 +38,10 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/ToolsLib/libraries/SoftwareSerial}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/ToolsLib/libraries/SoftwareSerial/src}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/ToolsLib/ToolsLib}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/ToolsLibOld/core/core}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/ToolsLibOld/core/variant}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/ToolsLibOld/libraries/SoftwareSerial}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/ToolsLibOld/libraries/SoftwareSerial/src}&quot;"/>
 								</option>
 								<inputType id="io.sloeber.compiler.c.sketch.input.899309525" name="C Source Files" superClass="io.sloeber.compiler.c.sketch.input"/>
 							</tool>
@@ -44,6 +52,10 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/ToolsLib/libraries/SoftwareSerial}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/ToolsLib/libraries/SoftwareSerial/src}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/ToolsLib/ToolsLib}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/ToolsLibOld/core/core}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/ToolsLibOld/core/variant}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/ToolsLibOld/libraries/SoftwareSerial}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/ToolsLibOld/libraries/SoftwareSerial/src}&quot;"/>
 								</option>
 								<inputType id="io.sloeber.compiler.S.sketch.input.386506799" name="Assembly source files" superClass="io.sloeber.compiler.S.sketch.input"/>
 							</tool>
