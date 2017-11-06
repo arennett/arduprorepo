@@ -44,12 +44,12 @@
 		<link>
 			<name>libraries/SensoLib</name>
 			<type>2</type>
-			<location>C:/Users/User/git/ardulibrepo/SensoLib</location>
+			<location>G:/git/ardulibrepo/SensoLib</location>
 		</link>
 		<link>
 			<name>libraries/SerialMsgLib</name>
 			<type>2</type>
-			<location>C:/Users/User/git/ardulibrepo/SerialMsgLib</location>
+			<location>G:/git/ardulibrepo/SerialMsgLib</location>
 		</link>
 		<link>
 			<name>libraries/SoftwareSerial</name>
@@ -59,7 +59,7 @@
 		<link>
 			<name>libraries/ToolsLib2</name>
 			<type>2</type>
-			<location>C:/Users/User/git/ardulibrepo/ToolsLib2</location>
+			<location>G:/git/ardulibrepo/ToolsLib2</location>
 		</link>
 	</linkedResources>
 </projectDescription>

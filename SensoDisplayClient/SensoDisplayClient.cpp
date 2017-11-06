@@ -27,6 +27,8 @@ void dataUpdate(byte *data , size_t len) {
 
 	SensoMsgHdr* pHdr = (SensoMsgHdr*)data;
 
+	SensoMsg smsg* (*data);
+
 	MPRINTSVAL("message received ,len: " ,len);
 	MPRINTSVAL("cmd: ",pHdr->cmd);
 	MPRINTSVAL("subcmd: ",pHdr->subcmd);
