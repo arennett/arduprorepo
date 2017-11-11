@@ -1,23 +1,33 @@
 #include "Arduino.h"
 #include <tools.h>
-#include <SerialMsg.h>
+#include <SerialMsgLib.h>
+#include <SensoMsg.h>
 
-SerialTx stxSerial (new SoftSerialPort(10,11));
+SoftSerialPort sensoClientPort = new SoftSerialPort(10,11);
+SerialTx stxClient (sensoClientPort);
 
-byte data[] = {55,99,88,44}; // some data
+SensoMsg sensoMsg(true);
 
 void setup()
 {
 	 Serial.begin(9600);
 	 MPRINTLN("setup SerialTestMaster");
-	 stxSerial.begin(9600);
+	 stxClient.begin(9600);
 }
 
 
 void loop()
 {
-	stxSerial.sendData(data,sizeof data);
-	delay(1000);
+	sensoMsg.setCmd(CMD_SET_DSP_CLEAR);
+	delay(300);
+	sensoMsg.send(&stxClient);
+	sensoMsg.setCmd(CMD_SET_DSP_RECT);
+	delay(300);
+	sensoMsg.setCmd(CMD_SET_DSP_CLEAR);
+	delay(300);
+	sensoMsg.setCmd(CMD_SET_DSP_CIRCLE);
+	delay(300);
+
 
 }
 
