@@ -27,8 +27,14 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SerialTestMaster/libraries/SerialMsgLib}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SerialTestMaster/libraries/SerialMsgLib/src}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SerialTestMaster/libraries/ToolsLib2/src}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SerialTestMaster/libraries/SensoLib}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SerialTestMaster/libraries/SensoLib/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SerialTestMasterExp/core/core}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SerialTestMasterExp/core/variant}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SerialTestMasterExp/libraries/SerialMsgLib}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SerialTestMasterExp/libraries/SerialMsgLib/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SerialTestMasterExp/libraries/SoftwareSerial}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SerialTestMasterExp/libraries/SoftwareSerial/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SerialTestMasterExp/libraries/ToolsLib2}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SerialTestMasterExp/libraries/ToolsLib2/src}&quot;"/>
 								</option>
 								<inputType id="io.sloeber.compiler.cpp.sketch.input.1966015210" name="CPP source files" superClass="io.sloeber.compiler.cpp.sketch.input"/>
 							</tool>
@@ -42,8 +48,14 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SerialTestMaster/libraries/SerialMsgLib}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SerialTestMaster/libraries/SerialMsgLib/src}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SerialTestMaster/libraries/ToolsLib2/src}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SerialTestMaster/libraries/SensoLib}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SerialTestMaster/libraries/SensoLib/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SerialTestMasterExp/core/core}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SerialTestMasterExp/core/variant}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SerialTestMasterExp/libraries/SerialMsgLib}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SerialTestMasterExp/libraries/SerialMsgLib/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SerialTestMasterExp/libraries/SoftwareSerial}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SerialTestMasterExp/libraries/SoftwareSerial/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SerialTestMasterExp/libraries/ToolsLib2}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SerialTestMasterExp/libraries/ToolsLib2/src}&quot;"/>
 								</option>
 								<inputType id="io.sloeber.compiler.c.sketch.input.611383820" name="C Source Files" superClass="io.sloeber.compiler.c.sketch.input"/>
 							</tool>
@@ -57,8 +69,14 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SerialTestMaster/libraries/SerialMsgLib}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SerialTestMaster/libraries/SerialMsgLib/src}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SerialTestMaster/libraries/ToolsLib2/src}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SerialTestMaster/libraries/SensoLib}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SerialTestMaster/libraries/SensoLib/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SerialTestMasterExp/core/core}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SerialTestMasterExp/core/variant}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SerialTestMasterExp/libraries/SerialMsgLib}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SerialTestMasterExp/libraries/SerialMsgLib/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SerialTestMasterExp/libraries/SoftwareSerial}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SerialTestMasterExp/libraries/SoftwareSerial/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SerialTestMasterExp/libraries/ToolsLib2}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SerialTestMasterExp/libraries/ToolsLib2/src}&quot;"/>
 								</option>
 								<inputType id="io.sloeber.compiler.S.sketch.input.740774864" name="Assembly source files" superClass="io.sloeber.compiler.S.sketch.input"/>
 							</tool>

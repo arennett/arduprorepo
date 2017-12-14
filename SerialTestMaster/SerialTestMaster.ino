@@ -1,43 +1,49 @@
+#define NDEBUG
 #include "Arduino.h"
 #include <tools.h>
-#include <SerialMsgLib.h>
+#include <SerialHeader.h>
+#include <SoftSerialPort.h>
+#include <SerialNode.h>
 
-SoftSerialPort* pPort =new SoftSerialPort(10,11);
-SerialHeaderTx* pTx = new SerialHeaderTx(new SerialHeaderRx(pPort,30));
+
+SoftSerialPort* pSerialPort;
+
+
+tSerialHeader sheader;
+
+
 
 byte data[] = {55,99,88,44}; // some data
-
-byte masterAddr = 0x01;
-byte clientAddr = 0x02;
-
+SerialNode* pNode1;
 
 void setup()
 {
 	 Serial.begin(9600);
+
+	 MPRINTLN("");
 	 MPRINTLN("setup SerialTestMaster");
-	 pPort->begin(9600);
-	 MPRINTFREE;
+
+	 pSerialPort=new SoftSerialPort(10,11,11);
+	 pSerialPort->begin(9600);
+	 SerialNode::init(10);
+	 pNode1 = SerialNode::createNode(1,false);
+	 pNode1->setReady(true);
 
 
-	 SerialHeaderRx* pRx= pTx->getRx();
-
-	 pRx->mprintCcbList();
-	 pRx->addConnection(masterAddr, clientAddr,true);
-	 pRx->mprintCcbList();
-
-	 if(pRx->connect(20000,1000)) {
-		 MPRINTLN("WE HAVE CONNECTED");
-	 }
 
 	 MPRINTFREE;
-
 }
 
 
 void loop()
 {
-	delay(1000);
-	MPRINTLN("LOOP");
+	SerialRx::readNextOnAllPorts();
+
+}
+
+void update(const byte* pData, size_t data_size,SerialPort* pPort) {
+	MPRINTLN("message received");
+	 // send NAK;
 }
 
 
