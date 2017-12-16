@@ -53,7 +53,7 @@ endif
 
 # Add inputs and outputs from these tool invocations to the build variables 
 AR += \
-C:\workspaces\sloeber4.1\Senso2\Release\arduino.ar \
+C:\Users\User\git\arduprorepo\Senso2\Release\arduino.ar \
 
 ELF += \
 Senso2.elf \
@@ -69,19 +69,19 @@ all: Senso2
 Senso2: $(HEX)
 	@echo 'Building target: $@'
 	@echo 'Printing size:'
-	"C:\sloeber\sloeber4.1\/arduinoPlugin/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/bin/avr-size" -A "C:/workspaces/sloeber4.1/Senso2/Release/Senso2.elf"
+	"C:\sloeber\sloeber4.1\/arduinoPlugin/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/bin/avr-size" -A "C:/Users/User/git/arduprorepo/Senso2/Release/Senso2.elf"
 	@echo 'Finished building target: $@'
 	@echo ' '
 
-C:\workspaces\sloeber4.1\Senso2\Release\arduino.ar: $(AR_OBJ)
+C:\Users\User\git\arduprorepo\Senso2\Release\arduino.ar: $(AR_OBJ)
 	@echo 'Starting archiver'
-	"C:\sloeber\sloeber4.1\/arduinoPlugin/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/bin/avr-gcc-ar" rcs    C:/workspaces/sloeber4.1/Senso2/Release/arduino.ar $(AR_OBJ)
+	"C:\sloeber\sloeber4.1\/arduinoPlugin/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/bin/avr-gcc-ar" rcs    C:/Users/User/git/arduprorepo/Senso2/Release/arduino.ar $(AR_OBJ)
 	@echo 'Finished building: $@'
 	@echo ' '
 
 Senso2.elf: $(LINK_OBJ) $(AR)
 	@echo 'Starting combiner'
-	"C:\sloeber\sloeber4.1\/arduinoPlugin/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/bin/avr-gcc" -Wall -Wextra -Os -g -flto -fuse-linker-plugin -Wl,--gc-sections -mmcu=atmega328p -o "C:\workspaces\sloeber4.1\Senso2/Release/Senso2.elf"   $(LINK_OBJ) $(AR)   C:/workspaces/sloeber4.1/Senso2/Release/arduino.ar  "-LC:\workspaces\sloeber4.1\Senso2/Release" -lm
+	"C:\sloeber\sloeber4.1\/arduinoPlugin/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/bin/avr-gcc" -Wall -Wextra -Os -g -flto -fuse-linker-plugin -Wl,--gc-sections -mmcu=atmega328p -o "C:\Users\User\git\arduprorepo\Senso2/Release/Senso2.elf"   $(LINK_OBJ) $(AR)   C:/Users/User/git/arduprorepo/Senso2/Release/arduino.ar  "-LC:\Users\User\git\arduprorepo\Senso2/Release" -lm
 	@echo 'Finished building: $@'
 	@echo ' '
 
