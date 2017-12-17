@@ -18,8 +18,13 @@ SerialTestClient.cpp.o: ..\SerialTestClient.cpp \
  C:\sloeber\sloeber4.1\arduinoPlugin\packages\arduino\hardware\avr\1.6.20\cores\arduino/Stream.h \
  C:\Users\User\git\ardulibrepo\SerialMsgLib\src/SerialMsg.h \
  C:\Users\User\git\ardulibrepo\SerialMsgLib\src/SerialPort.h \
+ C:\Users\User\git\ardulibrepo\SerialMsgLib\src/SerialPortRxTxMapper.h \
+ C:\Users\User\git\ardulibrepo\SerialMsgLib\src/SerialNode.h \
+ C:\Users\User\git\ardulibrepo\SerialMsgLib\src/SerialHeader.h \
  C:\Users\User\git\ardulibrepo\SerialMsgLib\src/SerialTx.h \
- C:\Users\User\git\ardulibrepo\SerialMsgLib\src/SerialRx.h
+ C:\Users\User\git\ardulibrepo\SerialMsgLib\src/SerialRx.h \
+ C:\Users\User\git\ardulibrepo\SerialMsgLib\src/AcbList.h \
+ C:\Users\User\git\ardulibrepo\SerialMsgLib\src/LcbList.h
 
 C:\sloeber\sloeber4.1\arduinoPlugin\packages\arduino\hardware\avr\1.6.20\cores\arduino/Arduino.h:
 
@@ -59,6 +64,16 @@ C:\Users\User\git\ardulibrepo\SerialMsgLib\src/SerialMsg.h:
 
 C:\Users\User\git\ardulibrepo\SerialMsgLib\src/SerialPort.h:
 
+C:\Users\User\git\ardulibrepo\SerialMsgLib\src/SerialPortRxTxMapper.h:
+
+C:\Users\User\git\ardulibrepo\SerialMsgLib\src/SerialNode.h:
+
+C:\Users\User\git\ardulibrepo\SerialMsgLib\src/SerialHeader.h:
+
 C:\Users\User\git\ardulibrepo\SerialMsgLib\src/SerialTx.h:
 
 C:\Users\User\git\ardulibrepo\SerialMsgLib\src/SerialRx.h:
+
+C:\Users\User\git\ardulibrepo\SerialMsgLib\src/AcbList.h:
+
+C:\Users\User\git\ardulibrepo\SerialMsgLib\src/LcbList.h:

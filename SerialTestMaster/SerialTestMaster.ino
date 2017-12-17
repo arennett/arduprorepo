@@ -25,15 +25,18 @@ void setup()
 	 pSerialPort=new SoftSerialPort(10,11,11);
 	 pSerialPort->begin(9600);
 	 SerialNode::init(10);
-	 pNode1 = SerialNode::createNode(1,false);
+	 pNode1 = SerialNode::createNode(1,true,11,1);
 	 pNode1->setReady(true);
+
+	 //pNode1->connect();
 	 MPRINTFREE;
 }
 
 
 void loop()
 {
-	SerialRx::readNextOnAllPorts();
+
+	SerialNode::processNodes(true, 2000);
 
 
 }
