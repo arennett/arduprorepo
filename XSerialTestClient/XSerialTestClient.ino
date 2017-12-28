@@ -51,25 +51,15 @@ void loop()
 
 
 
-void onPreConnect(SerialNode* pNode) {
-	if (pNode==pNode1){
-			if ((millis()-millis_start) > 2000){ //only example , check inputs, calibrate
-				pNode1->setReady(true);
-				MPRINTLNS("node 1 ready");
-			}
-	    }
 
-		 // preCondition for node2  to connect
-	if (pNode==pNode2){
-		if ((millis()-millis_start) > 4000){ //only example , check inputs, calibrate
-			pNode2->setReady(true);
-			MPRINTLNS("node 2 ready");
-		}
-	}
+void onPreConnect(SerialNode* pNode) {
+	MPRINTLNSVAL("onPreConnect :" ,pNode->getId());
+	pNode->setReady(true);
 }
 
 
 void onMessage(const tSerialHeader * pHeader,const byte* pData, size_t data_size,SerialNode* pNode) {
-	MPRINTLNS("user message received");
+	MPRINTLNSVAL("user message received :" ,pNode->getId() );
 	 // send NAK;
 }
+

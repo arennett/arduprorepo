@@ -24,7 +24,7 @@
  C:\Users\User\git\ardulibrepo\XSerialMsgLib\src/SerialRx.h \
  C:\Users\User\git\ardulibrepo\XSerialMsgLib\src/AcbList.h \
  C:\Users\User\git\ardulibrepo\XSerialMsgLib\src/LcbList.h \
- ..\XSerialTestClient.ino
+ ..\XSerialTestClient2.ino
 
 C:\sloeber\sloeber4.1\arduinoPlugin\packages\arduino\hardware\avr\1.6.20\cores\arduino/Arduino.h:
 
@@ -76,4 +76,4 @@ C:\Users\User\git\ardulibrepo\XSerialMsgLib\src/AcbList.h:
 
 C:\Users\User\git\ardulibrepo\XSerialMsgLib\src/LcbList.h:
 
-..\XSerialTestClient.ino:
+..\XSerialTestClient2.ino:

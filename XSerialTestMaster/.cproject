@@ -21,6 +21,12 @@
 								<option id="io.sloeber.compiler.cpp.sketch.option.incpath.2147261968" name="Include Paths (-I)" superClass="io.sloeber.compiler.cpp.sketch.option.incpath" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestMaster/core/core}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestMaster/core/variant}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestMaster/libraries/XSerialMsgLib}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestMaster/libraries/XSerialMsgLib/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestMaster/libraries/XToolsLib}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestMaster/libraries/XToolsLib/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestMaster/libraries/SoftwareSerial}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestMaster/libraries/SoftwareSerial/src}&quot;"/>
 								</option>
 								<inputType id="io.sloeber.compiler.cpp.sketch.input.1245433049" name="CPP source files" superClass="io.sloeber.compiler.cpp.sketch.input"/>
 							</tool>
@@ -28,6 +34,12 @@
 								<option id="io.sloeber.compiler.c.sketch.option.incpath.557649756" name="Include Paths (-I)" superClass="io.sloeber.compiler.c.sketch.option.incpath" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestMaster/core/core}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestMaster/core/variant}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestMaster/libraries/XSerialMsgLib}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestMaster/libraries/XSerialMsgLib/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestMaster/libraries/XToolsLib}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestMaster/libraries/XToolsLib/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestMaster/libraries/SoftwareSerial}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestMaster/libraries/SoftwareSerial/src}&quot;"/>
 								</option>
 								<inputType id="io.sloeber.compiler.c.sketch.input.1285754000" name="C Source Files" superClass="io.sloeber.compiler.c.sketch.input"/>
 							</tool>
@@ -35,6 +47,12 @@
 								<option id="io.sloeber.compiler.asm.sketch.option.incpath.768179314" name="Include Paths (-I)" superClass="io.sloeber.compiler.asm.sketch.option.incpath" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestMaster/core/core}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestMaster/core/variant}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestMaster/libraries/XSerialMsgLib}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestMaster/libraries/XSerialMsgLib/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestMaster/libraries/XToolsLib}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestMaster/libraries/XToolsLib/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestMaster/libraries/SoftwareSerial}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestMaster/libraries/SoftwareSerial/src}&quot;"/>
 								</option>
 								<inputType id="io.sloeber.compiler.S.sketch.input.2006850435" name="Assembly source files" superClass="io.sloeber.compiler.S.sketch.input"/>
 							</tool>
