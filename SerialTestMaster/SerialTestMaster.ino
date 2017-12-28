@@ -9,6 +9,9 @@ SoftSerialPort* pSerialPort1;
 SoftSerialPort* pSerialPort2;
 
 
+unsigned long testData = 0;
+unsigned long timeStamp =0;
+
 //byte data[] = {55,99,88,44}; // some data
 SerialNode *pNode1,*pNode2,*pNode3,*pNode4;
 
@@ -18,26 +21,28 @@ void setup()
 
 	 MPRINTLNS("");
 	 MPRINTLNS("setup SerialTestMaster");
+
 	 SerialNode::init(10);
+
 	 SerialNode::setOnMessageCallBack(onMessage);
 	 SerialNode::setOnPreConnectCallBack(onPreConnect);
+	 pSerialPort1 =new SoftSerialPort(10,11,11);
 
-	 // pSerialPort1 =new SoftSerialPort(10,11,11);
-	  pSerialPort2 =new SoftSerialPort(8,9,12);
-
-	  //pSerialPort1->begin(9600);
-	  pSerialPort2->begin(9600);
-
-	 //pNode1  = SerialNode::createNode(1,true,11,1);
-	 //pNode2  = SerialNode::createNode(2,true,11,2);
-	  pNode3  = SerialNode::createNode(3,true,12,1);
-	  pNode4  = SerialNode::createNode(4,true,12,2);
+	 pSerialPort2 =new SoftSerialPort(8,9,12);
 
 
+	 pSerialPort1->begin(9600);
+	 pSerialPort2->begin(9600);
+
+	 pNode1  = SerialNode::createNode(1,true,11,1);
+	 pNode2  = SerialNode::createNode(2,false,11,2);
+	 pNode3  = SerialNode::createNode(3,true,12,1);
+	 pNode4  = SerialNode::createNode(4,false,12,2);
 
 
 
-	PRINTFREE;
+
+	XPRINTFREE;
 }
 
 
@@ -51,6 +56,15 @@ void loop()
 		return;
 	}
 
+
+	if (millis() > (timeStamp + 100L)) {
+		pNode1->send(CMD_ACD, 0, 0, (byte*) &++testData, sizeof(unsigned long));
+		pNode2->send(CMD_ACD, 0, 0, (byte*) &++testData, sizeof(unsigned long));
+		pNode3->send(CMD_ACD, 0, 0, (byte*) &++testData, sizeof(unsigned long));
+		pNode4->send(CMD_ACD, 0, 0, (byte*) &++testData, sizeof(unsigned long));
+
+		timeStamp = millis();
+	}
 	// system calibrated , and all
 	//MPRINTLNS("system calibrated and all nodes connected withe remote");
 
@@ -88,7 +102,11 @@ void onPreConnect(SerialNode* pNode) {
 }
 
 void onMessage(const tSerialHeader * pHeader,const byte* pData, size_t data_size,SerialNode* pNode) {
-	MPRINTLNS("user message received");
+	if (data_size>0) {
+		XPRINTLNSVAL("testData on node: ",pNode->getId());
+		XPRINTLNSVAL("testData : ", *(unsigned long*)pData);
+	}
+
 	 // send NAK;
 }
 
