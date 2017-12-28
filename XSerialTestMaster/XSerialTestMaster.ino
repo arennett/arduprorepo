@@ -22,14 +22,14 @@ void setup()
 
 	 MPRINTLNS("");
 	 MPRINTLNS("setup SerialTestMaster");
-	 SerialNode::init(11);
-	 pSerialPort=new SoftSerialPort(10,11,10);
+	 SerialNode::init(10);
+	 pSerialPort=new SoftSerialPort(11,11,10);
 	 pSerialPort->begin(9600);
-	 pNode1  = SerialNode::createNode(1,false,10,1);
-	 pNode2  = SerialNode::createNode(2,false,10,2);
+	 pNode1  = SerialNode::createNode(1,false,11,1);
+	 pNode2  = SerialNode::createNode(2,false,11,2);
 
 
-	PRINTFREE;
+	XPRINTFREE;
 }
 
 
@@ -42,8 +42,7 @@ void loop()
 		return;
 	}
 
-	// system calibrated , and all
-	//MPRINTLNS("system calibrated and all nodes connected with remote");
+	MPRINTLNS("system calibrated and all nodes connected with remote");
 
 	Serial.flush();
 
@@ -53,20 +52,7 @@ void loop()
 
 
 void onPreConnect(SerialNode* pNode) {
-	if (pNode==pNode1){
-			if ((millis()-millis_start) > 2000){ //only example , check inputs, calibrate
-				pNode1->setReady(true);
-				MPRINTLNS("node 1 ready");
-			}
-	    }
-
-		 // preCondition for node2  to connect
-	if (pNode==pNode2){
-		if ((millis()-millis_start) > 4000){ //only example , check inputs, calibrate
-			pNode2->setReady(true);
-			MPRINTLNS("node 2 ready");
-		}
-	}
+	pNode->setReady(true);
 }
 
 
@@ -74,8 +60,3 @@ void onMessage(const tSerialHeader * pHeader,const byte* pData, size_t data_size
 	MPRINTLNS("user message received");
 	 // send NAK;
 }
-
-
-
-
-
