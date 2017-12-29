@@ -2,7 +2,7 @@
 //This is a automatic generated file
 //Please do not modify this file
 //If you touch this file your change will be overwritten during the next build
-//This file has been generated on 2017-12-28 20:27:31
+//This file has been generated on 2017-12-29 09:08:33
 
 #include "Arduino.h"
 #include "Arduino.h"
@@ -13,7 +13,7 @@
 void setup() ;
 void loop() ;
 void onPreConnect(SerialNode* pNode) ;
-void onMessage(const tSerialHeader * pHeader,const byte* pData, size_t data_size,SerialNode* pNode) ;
+void onMessage(const tSerialHeader * pHeader, const byte* pData, 		size_t data_size, SerialNode* pNode) ;
 
 #include "XSerialTestClient2.ino"
 
