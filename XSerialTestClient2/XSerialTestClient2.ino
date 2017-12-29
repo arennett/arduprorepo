@@ -23,8 +23,9 @@ void setup()
 	 MPRINTLNS("");
 	 MPRINTLNS("setup SerialTestClient 2");
 	 SerialNode::init(12);
-	 pSerialPort=new SoftSerialPort(10,11,10);
+	 pSerialPort=new SoftSerialPort(8,9,10);
 	 pSerialPort->begin(9600);
+	 SerialNode::setOnPreConnectCallBack(onPreConnect);
 	 pNode1  = SerialNode::createNode(1,false,10,3);
 	 pNode2  = SerialNode::createNode(2,false,10,4);
 
