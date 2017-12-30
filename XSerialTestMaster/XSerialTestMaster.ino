@@ -15,7 +15,7 @@ bool conditionsOK = false;
 unsigned long timeStamp = 0;
 unsigned long now = 0;
 unsigned long testdata1 = 0;
-bool bStart = false;
+
 
 void setup() {
 	Serial.begin(9600);
@@ -49,24 +49,16 @@ void loop() {
 	SerialNode::processNodes();
 
 	if (!SerialNode::areAllNodesConnected()) {
-		bStart = false;
 		return;
-	} else {
-		if (!bStart) {
-			MPRINTLNS("system calibrated and all nodes connected with remote");
-			bStart = true;
-		}
 	}
-
-
 
 	now = millis();
 
 	if ((now - timeStamp) > 1000) {
 		pNode->send(CMD_ACD, 0, 0, (byte*) ++testdata1, sizeof(unsigned long));
-		pNode = (SerialNode*) pNode->pNext;
+		pNode = (SerialNode*) pNode->getNext();
 		if (!pNode) {
-			pNode = SerialNode::pSerialNodeList;
+			pNode = SerialNode::getRoot();
 		}
 		timeStamp=now;
 	}

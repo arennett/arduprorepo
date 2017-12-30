@@ -36,17 +36,8 @@ void loop() {
 	SerialNode::processNodes();
 
 	if (!SerialNode::areAllNodesConnected()) {
-		bStart = false;
 		return;
-	} else {
-		bStart = true;
 	}
-
-	if (bStart) {
-		MPRINTLNS("system calibrated and all nodes connected with remote");
-		bStart = false;
-	}
-
 }
 
 void onPreConnect(SerialNode* pNode) {

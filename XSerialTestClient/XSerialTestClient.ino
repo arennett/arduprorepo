@@ -10,8 +10,7 @@ tSerialHeader sheader;
 
 byte data[] = { 55, 99, 88, 44 }; // some data
 SerialNode *pNode1, *pNode2;
-bool conditionsOK = false;
-bool bStart = false;
+
 
 unsigned long millis_start = millis();
 
@@ -37,16 +36,11 @@ void loop() {
 	SerialNode::processNodes();
 
 	if (!SerialNode::areAllNodesConnected()) {
-		bStart = false;
+
 		return;
-	} else {
-		bStart = true;
 	}
 
-	if (bStart) {
-		MPRINTLNS("system calibrated and all nodes connected with remote");
-		bStart = false;
-	}
+
 
 }
 
