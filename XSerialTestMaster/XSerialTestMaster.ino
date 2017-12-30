@@ -9,7 +9,7 @@ SoftSerialPort *pSerialPort1, *pSerialPort2;
 tSerialHeader sheader;
 
 byte data[] = { 55, 99, 88, 44 }; // some data
-SerialNode *pNode1, *pNode2, *pNode3, *pNode4, *pNode;
+SerialNode *pNode1, *pNode2, *pNode3, *pNode4,*pNode5, *pNode6, *pNode;
 bool conditionsOK = false;
 
 unsigned long timeStamp = 0;
@@ -32,15 +32,19 @@ void setup() {
 
 	pNode1 = SerialNode::createNode(1, true, 11, 1);
 	pNode2 = SerialNode::createNode(2, true, 11, 2);
-	pNode3 = SerialNode::createNode(3, true, 12, 1);
-	pNode4 = SerialNode::createNode(4, true, 12, 2);
+	pNode3 = SerialNode::createNode(3, true, 11, 3);
+
+	pNode4 = SerialNode::createNode(4, true, 12, 1);
+	pNode5 = SerialNode::createNode(5, true, 12, 2);
+	pNode6 = SerialNode::createNode(6, true, 12, 3);
+
 
 	pNode1->setReady(true);
 	pNode2->setReady(true);
 	pNode3->setReady(true);
 	pNode4->setReady(true);
 
-	pNode = pNode1;
+	pNode = SerialNode::getRoot();
 	XPRINTFREE
 	;
 }
@@ -54,13 +58,14 @@ void loop() {
 
 	now = millis();
 
-	if ((now - timeStamp) > 1000) {
-		pNode->send(CMD_ACD, 0, 0, (byte*) ++testdata1, sizeof(unsigned long));
-		pNode = (SerialNode*) pNode->getNext();
-		if (!pNode) {
-			pNode = SerialNode::getRoot();
-		}
-		timeStamp=now;
+	if ((now - timeStamp) > 350) {
+			pNode->send(CMD_ARQ, 0, 0, (byte*) &++testdata1, sizeof(unsigned long));
+			pNode = (SerialNode*) pNode->getNext();
+			if (!pNode) {
+				pNode = SerialNode::getRoot();
+			}
+			timeStamp=now;
+
 	}
 
 }
