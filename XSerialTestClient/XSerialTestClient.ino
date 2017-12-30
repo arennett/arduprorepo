@@ -9,7 +9,7 @@ SoftSerialPort* pSerialPort;
 tSerialHeader sheader;
 
 byte data[] = { 55, 99, 88, 44 }; // some data
-SerialNode *pNode1, *pNode2;
+SerialNode *pNode1, *pNode2,*pNode3;
 
 
 unsigned long millis_start = millis();
@@ -27,6 +27,8 @@ void setup() {
 	SerialNode::setOnMessageCallBack(onMessage);
 	pNode1 = SerialNode::createNode(1, false, 10, 1);
 	pNode2 = SerialNode::createNode(2, false, 10, 2);
+	pNode3 = SerialNode::createNode(3, false, 10, 3);
+
 
 	XPRINTFREE
 	;
@@ -53,6 +55,7 @@ void onMessage(const tSerialHeader * pHeader, const byte* pData,
 		size_t data_size, SerialNode* pNode) {
 	MPRINTLNSVAL("user message received :", pNode->getId());
 	MPRINTLNSVAL("user message data     :", *(unsigned long* )pData);
+	pNode->send(CMD_ACK,pHeader->aktid);
 
 	// send NAK;
 }
