@@ -55,7 +55,10 @@ void onMessage(const tSerialHeader * pHeader, const byte* pData,
 		size_t data_size, SerialNode* pNode) {
 	MPRINTLNSVAL("user message received :", pNode->getId());
 	MPRINTLNSVAL("user message data     :", *(unsigned long* )pData);
-	pNode->send(CMD_ACK,pHeader->aktid);
+	if (pHeader->cmd==CMD_ARQ) {
+		pNode->send(CMD_ARP,pHeader->aktid,pNode->getId(),pData,data_size);
+	}
+
 
 	// send NAK;
 }

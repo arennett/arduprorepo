@@ -24,8 +24,10 @@ void setup() {
 	MPRINTLNS("setup SerialTestMaster");
 	SerialNode::init(10);
 	pSerialPort1 = new SoftSerialPort(10, 11, 11);
+	pSerialPort1->createDataBuffer(sizeof(unsigned long));
 	pSerialPort1->begin(9600);
 	pSerialPort2 = new SoftSerialPort(8, 9, 12);
+	pSerialPort1->createDataBuffer(sizeof(unsigned long));
 	pSerialPort2->begin(9600);
 	SerialNode::setOnMessageCallBack(onMessage);
 	SerialNode::setOnPreConnectCallBack(onPreConnect);
@@ -58,7 +60,7 @@ void loop() {
 
 	now = millis();
 
-	if ((now - timeStamp) > 350) {
+	if ((now - timeStamp) > 3500) {
 			pNode->send(CMD_ARQ, 0, 0, (byte*) &++testdata1, sizeof(unsigned long));
 			pNode = (SerialNode*) pNode->getNext();
 			if (!pNode) {
@@ -77,6 +79,9 @@ void onPreConnect(SerialNode* pNode) {
 
 void onMessage(const tSerialHeader * pHeader, const byte* pData,
 		size_t data_size, SerialNode* pNode) {
-	MPRINTLNSVAL("user message received :", pNode->getId());
-	// send NAK;
+
+	if (pHeader->cmd==CMD_ARP) {
+		MPRINTLNSVAL("CMD_ARP received :", pNode->getId());
+		MPRINTLNSVAL("data : ", *(unsigned long*)pData);
+	}
 }
