@@ -44,5 +44,8 @@ libraries/XSerialMsgLib/Release/libraries/SoftwareSerial/src \
 libraries/XSerialMsgLib/Release/libraries/XToolsLib/src \
 libraries/XSerialMsgLib/Release/src \
 libraries/XSerialMsgLib/src \
+libraries/XToolsLib/Release \
+libraries/XToolsLib/Release/core \
+libraries/XToolsLib/Release/src \
 libraries/XToolsLib/src \
 

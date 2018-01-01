@@ -21,13 +21,13 @@ void setup() {
 	Serial.begin(9600);
 
 	MPRINTLNS("");
-	MPRINTLNS("setup SerialTestMaster");
+	MPRINTLNS("################################setup SerialTestMaster######################################");
 	SerialNode::init(10);
 	pSerialPort1 = new SoftSerialPort(10, 11, 11);
 	pSerialPort1->createDataBuffer(sizeof(unsigned long));
 	pSerialPort1->begin(9600);
 	pSerialPort2 = new SoftSerialPort(8, 9, 12);
-	pSerialPort1->createDataBuffer(sizeof(unsigned long));
+	pSerialPort2->createDataBuffer(sizeof(unsigned long));
 	pSerialPort2->begin(9600);
 	SerialNode::setOnMessageCallBack(onMessage);
 	SerialNode::setOnPreConnectCallBack(onPreConnect);
@@ -41,16 +41,13 @@ void setup() {
 	pNode6 = SerialNode::createNode(6, true, 12, 3);
 
 
-	pNode1->setReady(true);
-	pNode2->setReady(true);
-	pNode3->setReady(true);
-	pNode4->setReady(true);
 
 	pNode = SerialNode::getRoot();
 	XPRINTFREE
 	;
 }
 
+#define SEND_PERIOD 3000
 void loop() {
 	SerialNode::processNodes();
 
@@ -60,9 +57,18 @@ void loop() {
 
 	now = millis();
 
-	if ((now - timeStamp) > 3500) {
-			pNode->send(CMD_ARQ, 0, 0, (byte*) &++testdata1, sizeof(unsigned long));
-			pNode = (SerialNode*) pNode->getNext();
+	unsigned long delta =now - timeStamp;
+
+
+
+	if ((delta) > SEND_PERIOD) {
+			for (int i=0; i< 6; i++) {
+				pNode->send(CMD_ARQ, 0, 0, (byte*) &++testdata1, sizeof(unsigned long));
+				XPRINTSVAL("send: ",pNode->getId());XPRINTSVAL(" data : ", testdata1);XPRINTLNSVAL(" delay ",delta-SEND_PERIOD);
+				delay(200);
+			}
+
+		 	pNode = (SerialNode*) pNode->getNext();
 			if (!pNode) {
 				pNode = SerialNode::getRoot();
 			}
@@ -81,7 +87,9 @@ void onMessage(const tSerialHeader * pHeader, const byte* pData,
 		size_t data_size, SerialNode* pNode) {
 
 	if (pHeader->cmd==CMD_ARP) {
-		MPRINTLNSVAL("CMD_ARP received :", pNode->getId());
-		MPRINTLNSVAL("data : ", *(unsigned long*)pData);
+		XPRINTSVAL("ARP : ", pNode->getId());
+		XPRINTLNSVAL(" data : ", *(unsigned long*)pData);
+		XPRINTLNSVAL(" acbs : ", AcbList::instance.count());
+
 	}
 }

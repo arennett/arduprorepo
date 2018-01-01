@@ -10,6 +10,9 @@ RM := del
 -include sources.mk
 -include subdir.mk
 -include libraries\XToolsLib\src\subdir.mk
+-include libraries\XToolsLib\Release\src\subdir.mk
+-include libraries\XToolsLib\Release\core\subdir.mk
+-include libraries\XToolsLib\Release\subdir.mk
 -include libraries\XSerialMsgLib\src\subdir.mk
 -include libraries\XSerialMsgLib\Release\src\subdir.mk
 -include libraries\XSerialMsgLib\Release\libraries\XToolsLib\src\subdir.mk
