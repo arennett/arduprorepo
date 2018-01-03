@@ -1,15 +1,13 @@
 #include "Arduino.h"
 #include <tools.h>
-#include <SerialHeader.h>
-#include <SoftSerialPort.h>
-#include <SerialNode.h>
+#include <SerialMsgLib.h>
 
 SoftSerialPort *pSerialPort1, *pSerialPort2;
-
 tSerialHeader sheader;
 
 byte data[] = { 55, 99, 88, 44 }; // some data
 SerialNode *pNode1, *pNode2, *pNode3, *pNode4,*pNode5, *pNode6, *pNode;
+SerialNodeNet* pNet;
 bool conditionsOK = false;
 
 unsigned long timeStamp = 0;
@@ -22,36 +20,36 @@ void setup() {
 
 	MPRINTLNS("");
 	MPRINTLNS("################################setup SerialTestMaster######################################");
-	SerialNode::init(10);
+
+	pNet=SerialNodeNet::init(10);
+
 	pSerialPort1 = new SoftSerialPort(10, 11, 11);
 	pSerialPort1->createDataBuffer(sizeof(unsigned long));
 	pSerialPort1->begin(9600);
 	pSerialPort2 = new SoftSerialPort(8, 9, 12);
 	pSerialPort2->createDataBuffer(sizeof(unsigned long));
 	pSerialPort2->begin(9600);
-	SerialNode::setOnMessageCallBack(onMessage);
-	SerialNode::setOnPreConnectCallBack(onPreConnect);
 
-	pNode1 = SerialNode::createNode(1, true, 11, 1);
-	pNode2 = SerialNode::createNode(2, true, 11, 2);
-	pNode3 = SerialNode::createNode(3, true, 11, 3);
+	pNet->setOnMessageCallBack(onMessage);
+	pNet->setOnPreConnectCallBack(onPreConnect);
 
-	pNode4 = SerialNode::createNode(4, true, 12, 1);
-	pNode5 = SerialNode::createNode(5, true, 12, 2);
-	pNode6 = SerialNode::createNode(6, true, 12, 3);
+	pNode1 = pNet->createNode(1, true, 11, 1);
+	pNode2 = pNet->createNode(2, true, 11, 2);
+	pNode3 = SerialNodeNet::getInstance()->createNode(3, true, 11, 3);
 
-
-
-	pNode = SerialNode::getRoot();
+	pNode4 = pNet->createNode(4, true, 12, 1);
+	pNode5 = pNet->createNode(5, true, 12, 2);
+	pNode6 = pNet->createNode(6, true, 12, 3);
+	pNode = pNet->getRootNode();
 	XPRINTFREE
 	;
 }
 
-#define SEND_PERIOD 3000
+#define SEND_PERIOD 500
 void loop() {
-	SerialNode::processNodes();
+	pNet->processNodes();
 
-	if (!SerialNode::areAllNodesConnected()) {
+	if (!pNet->areAllNodesConnected()) {
 		return;
 	}
 
@@ -62,15 +60,15 @@ void loop() {
 
 
 	if ((delta) > SEND_PERIOD) {
-			for (int i=0; i< 6; i++) {
+			for (int i=0; i < 2; i++) {
 				pNode->send(CMD_ARQ, 0, 0, (byte*) &++testdata1, sizeof(unsigned long));
 				XPRINTSVAL("send: ",pNode->getId());XPRINTSVAL(" data : ", testdata1);XPRINTLNSVAL(" delay ",delta-SEND_PERIOD);
-				delay(200);
+
 			}
 
 		 	pNode = (SerialNode*) pNode->getNext();
 			if (!pNode) {
-				pNode = SerialNode::getRoot();
+				pNode = pNet->getRootNode();
 			}
 			timeStamp=now;
 
