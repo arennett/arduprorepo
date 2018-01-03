@@ -1,8 +1,6 @@
 #include "Arduino.h"
 #include <tools.h>
-#include <SerialHeader.h>
-#include <SoftSerialPort.h>
-#include <SerialNode.h>
+#include <SerialMsgLib.h>
 
 SoftSerialPort* pSerialPort;
 
@@ -10,33 +8,35 @@ tSerialHeader sheader;
 
 byte data[] = { 55, 99, 88, 44 }; // some data
 SerialNode *pNode1, *pNode2,*pNode3;
+SerialNodeNet* pNet;
 bool bStart = false;
 
 unsigned long millis_start = millis();
 
 void setup() {
+
 	Serial.begin(9600);
 
 	MPRINTLNS("");
-	MPRINTLNS("setup SerialTestClient 2");
-	SerialNode::init(12);
+	MPRINTLNS("################################ setup SerialTestClient (12) ######################################");
+	pNet=SerialNodeNet::init(12);
 	pSerialPort = new SoftSerialPort(8, 9, 10);
 	pSerialPort->createDataBuffer(sizeof(unsigned long));
 	pSerialPort->begin(9600);
-	SerialNode::setOnMessageCallBack(onMessage);
-	SerialNode::setOnPreConnectCallBack(onPreConnect);
-	pNode1 = SerialNode::createNode(1, false, 10, 4);
-	pNode2 = SerialNode::createNode(2, false, 10, 5);
-	pNode3 = SerialNode::createNode(3, false, 10, 6);
+	pNet->setOnPreConnectCallBack(onPreConnect);
+	pNet->setOnMessageCallBack(onMessage);
+	pNode1 = pNet->createNode(1, false, 10, 4);
+	pNode2 = pNet->createNode(2, false, 10, 5);
+	pNode3 = pNet->createNode(3, false, 10, 6);
 
 	XPRINTFREE
 	;
 }
 
 void loop() {
-	SerialNode::processNodes();
+	pNet->processNodes();
 
-	if (!SerialNode::areAllNodesConnected()) {
+	if (!pNet->areAllNodesConnected()) {
 		return;
 	}
 }
