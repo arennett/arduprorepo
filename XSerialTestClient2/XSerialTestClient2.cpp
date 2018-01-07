@@ -1,20 +1,28 @@
 #include "Arduino.h"
 #include <tools.h>
 #include <SerialMsgLib.h>
+#include "MyMessageHandler.h"
+#include "MyPreConnectHandler.h"
+#include <SoftwareSerial.h>
+#include <SerialPort.h>
+#include"DummySerialPort.h"
+
 
 SoftSerialPort* pSerialPort;
 
 tSerialHeader sheader;
 
-byte data[] = { 55, 99, 88, 44 }; // some data
-SerialNode *pNode1, *pNode2,*pNode3;
+//byte data[] = { 55, 99, 88, 44 }; // some data
+
 SerialNodeNet* pNet;
-bool bStart = false;
+MyMessageHandler messageHandler;
+MyPreConnectHandler preConnectHandler;
+tStamp timeStamp =0;
+unsigned long testdata1 =0;
 
 unsigned long millis_start = millis();
 
 void setup() {
-
 	Serial.begin(9600);
 
 	MPRINTLNS("");
@@ -23,35 +31,30 @@ void setup() {
 	pSerialPort = new SoftSerialPort(8, 9, 10);
 	pSerialPort->createDataBuffer(sizeof(unsigned long));
 	pSerialPort->begin(9600);
-	pNet->setOnPreConnectCallBack(onPreConnect);
-	pNet->setOnMessageCallBack(onMessage);
-	pNode1 = pNet->createNode(1, false, 10, 4);
-	pNode2 = pNet->createNode(2, false, 10, 5);
-	pNode3 = pNet->createNode(3, false, 10, 6);
+	pNet->setOnMessageHandler(&messageHandler);
+	pNet->setOnPreConnectHandler(&preConnectHandler);
+	//pNet->createNode(1, false, 10, 4);
+	//pNet->createNode(2, false, 10, 5);
+	pNet->createNode(3, false, 11, 3);
 
-	XPRINTFREE
-	;
+	XPRINTFREE;
+    Serial.flush();
+
+
+
 }
 
+#define SEND_PERIOD 200
 void loop() {
+
 	pNet->processNodes();
 
 	if (!pNet->areAllNodesConnected()) {
 		return;
 	}
-}
 
-void onPreConnect(SerialNode* pNode) {
-	MPRINTLNSVAL("onPreConnect :", pNode->getId());
-	pNode->setReady(true);
-}
 
-void onMessage(const tSerialHeader * pHeader, const byte* pData,
-		size_t data_size, SerialNode* pNode) {
-	MPRINTLNSVAL("user message received :", pNode->getId());
-	MPRINTLNSVAL("user message data     :", *(unsigned long* )pData);
-	if (pHeader->cmd==CMD_ARQ) {
-		pNode->send(CMD_ARP,pHeader->aktid,pNode->getId(),pData,data_size);
-	}
+
+
 }
 
