@@ -1,3 +1,6 @@
+//#define DPRINT_ON     //...debugging level
+#define MPRINT_ON     //...monitoring level
+
 #include "Arduino.h"
 #include <tools.h>
 #include <SerialMsgLib.h>
@@ -11,12 +14,10 @@ SoftSerialPort *pSerialPort1, *pSerialPort2;
 tSerialHeader sheader;
 
 byte data[] = { 55, 99, 88, 44 }; // some data
-SerialNode *pNode1, *pNode2, *pNode3, *pNode4,*pNode5, *pNode6, *pNode;
 SerialNodeNet* pNet;
 bool conditionsOK = false;
 MyMessageHandler messageHandler;
 MyPreConnectHandler preConnectHandler;
-
 
 unsigned long timeStamp = 0;
 unsigned long now = 0;
@@ -27,7 +28,7 @@ void setup() {
 	Serial.begin(9600);
 
 	MPRINTLNS("");
-	MPRINTLNS("################################setup SerialTestMaster######################################");
+	MPRINTLNS("################################setup SerialTestMaster (10)######################################");
 
 	pNet=SerialNodeNet::init(10);
 
@@ -41,31 +42,25 @@ void setup() {
 	pNet->setOnMessageHandler(&messageHandler);
 	pNet->setOnPreConnectHandler(&preConnectHandler);
 
-	pNode1 = pNet->createNode(1, true, 11, 1);
-	pNode2 = pNet->createNode(2, true, 11, 2);
-	pNode3 = pNet->createNode(3, true, 11, 3);
-	pNode4 = pNet->createNode(4, true, 12, 1);
-	pNode5 = pNet->createNode(5, true, 12, 2);
-	pNode6 = pNet->createNode(6, true, 12, 3);
-	pNode = pNet->getRootNode();
+	//pNet->createNode(1, true, 11, 1);
+	/*
+	pNet->createNode(2, true, 11, 2);
+	pNet->createNode(3, true, 11, 3);
+	pNet->createNode(4, true, 12, 1);
+	pNet->createNode(5, true, 12, 2);
+	pNet->createNode(6, true, 12, 3);
+	pNet->getRootNode();*/
 	XPRINTFREE
 	;
 }
 
 #define SEND_PERIOD 500
 void loop() {
+
 	pNet->processNodes();
 
-	if (!pNet->areAllNodesConnected()) {
-		return;
-	}
 
-	now = millis();
-
-	unsigned long delta =now - timeStamp;
-
-
-
+	/*
 	if ((delta) > SEND_PERIOD) {
 			for (int i=0; i < 2; i++) {
 				pNode->send(CMD_ARQ, 0, 0, (byte*) &++testdata1, sizeof(unsigned long));
@@ -80,5 +75,6 @@ void loop() {
 			timeStamp=now;
 
 	}
+*/
 
 }
