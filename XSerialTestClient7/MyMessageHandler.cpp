@@ -6,6 +6,7 @@
  */
 
 
+
 #include <SerialMsgLib.h>
 #include <tools.h>
 #include "MyMessageHandler.h"
@@ -22,13 +23,10 @@ MyMessageHandler::~MyMessageHandler() {
 }
 
 void MyMessageHandler::onMessage(const tSerialHeader* pHeader, const unsigned char* pData, unsigned int dataSize,  SerialNode* pNode){
-	XPRINTLNSVAL("MyMessageHandler(10)::onMessage> for node : ",pNode->getId());
+	XPRINTLNSVAL("MyMessageHandler(12)::onMessage> for node : ",pNode->getId());
 	XPRINTLNHEADER(pHeader);
-	if (pHeader->cmd==CMD_ARP) {
-		XPRINTSVAL("ARP : ", pNode->getId());
-		XPRINTLNSVAL(" dataSize : ",dataSize);
-		XPRINTLNSVAL(" data : ", *(unsigned long*)pData);
-		XPRINTLNSVAL(" acbs : ", AcbList::getInstance()->count());
-
+	if (pHeader->cmd==CMD_ARQ) {
+		pNode->send(CMD_ARP, pHeader->aktid, 0, pData, dataSize);
 	}
+
 }

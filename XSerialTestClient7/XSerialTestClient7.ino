@@ -8,7 +8,7 @@
 #include"DummySerialPort.h"
 
 
-SoftSerialPort* pSerialPort;
+SoftSerialPort* pSerialPort6;
 
 tSerialHeader sheader;
 
@@ -26,16 +26,14 @@ void setup() {
 	Serial.begin(9600);
 
 	MPRINTLNS("");
-	MPRINTLNS("################################ setup SerialTestClient (12) ######################################");
-	pNet=SerialNodeNet::init(12);
-	pSerialPort = new SoftSerialPort(8, 9, 10);
-	pSerialPort->createDataBuffer(sizeof(unsigned long));
-	pSerialPort->begin(9600);
+	MPRINTLNS("################################ setup SerialTestClient (7) ######################################");
+	pNet=SerialNodeNet::init(7);
+	pSerialPort6 = new SoftSerialPort(8, 9, 6);
+	pSerialPort6->createDataBuffer(sizeof(unsigned long));
+	pSerialPort6->begin(9600);
 	pNet->setOnMessageHandler(&messageHandler);
 	pNet->setOnPreConnectHandler(&preConnectHandler);
-	//pNet->createNode(1, false, 10, 4);
-	//pNet->createNode(2, false, 10, 5);
-	pNet->createNode(3, false, 11, 3);
+	pNet->createNode(1, false, 4, 1);
 
 	XPRINTFREE;
     Serial.flush();

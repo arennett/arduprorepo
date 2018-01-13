@@ -23,35 +23,27 @@ unsigned long timeStamp = 0;
 unsigned long now = 0;
 unsigned long testdata1 = 0;
 
+tStamp delta;
 
 void setup() {
 	Serial.begin(9600);
 
 	MPRINTLNS("");
-	MPRINTLNS("################################setup SerialTestMaster (10)######################################");
+	MPRINTLNS("################################setup SerialTestMaster (4)######################################");
 
-	pNet=SerialNodeNet::init(10);
+	pNet=SerialNodeNet::init(4);
 
-	pSerialPort1 = new SoftSerialPort(10, 11, 11);
+	pSerialPort1 = new SoftSerialPort(8, 9, 5);
 	pSerialPort1->createDataBuffer(sizeof(unsigned long));
 	pSerialPort1->begin(9600);
-	pSerialPort2 = new SoftSerialPort(8, 9, 12);
-	pSerialPort2->createDataBuffer(sizeof(unsigned long));
-	pSerialPort2->begin(9600);
+
 
 	pNet->setOnMessageHandler(&messageHandler);
 	pNet->setOnPreConnectHandler(&preConnectHandler);
 
-	//pNet->createNode(1, true, 11, 1);
-	/*
-	pNet->createNode(2, true, 11, 2);
-	pNet->createNode(3, true, 11, 3);
-	pNet->createNode(4, true, 12, 1);
-	pNet->createNode(5, true, 12, 2);
-	pNet->createNode(6, true, 12, 3);
-	pNet->getRootNode();*/
-	XPRINTFREE
-	;
+	pNet->createNode(1, true, 7, 1);
+
+	XPRINTFREE;
 }
 
 #define SEND_PERIOD 500
@@ -59,22 +51,19 @@ void loop() {
 
 	pNet->processNodes();
 
+	if (!pNet->areAllNodesConnected()) {
+		return;
+	}
 
-	/*
+	delta = millis()-timeStamp;
+
 	if ((delta) > SEND_PERIOD) {
-			for (int i=0; i < 2; i++) {
+		    SerialNode* pNode = pNet->getNode(1);
+			for (int i=0; i < 1; i++) {
 				pNode->send(CMD_ARQ, 0, 0, (byte*) &++testdata1, sizeof(unsigned long));
 				XPRINTSVAL("send: ",pNode->getId());XPRINTSVAL(" data : ", testdata1);XPRINTLNSVAL(" delay ",delta-SEND_PERIOD);
 
 			}
-
-		 	pNode = (SerialNode*) pNode->getNext();
-			if (!pNode) {
-				pNode = pNet->getRootNode();
-			}
 			timeStamp=now;
-
 	}
-*/
-
 }

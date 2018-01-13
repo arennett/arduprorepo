@@ -27,6 +27,14 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestMaster/libraries/XToolsLib/src}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestMaster/libraries/SoftwareSerial}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestMaster/libraries/SoftwareSerial/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestClient4/core/core}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestClient4/core/variant}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestClient4/libraries/SoftwareSerial}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestClient4/libraries/SoftwareSerial/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestClient4/libraries/XSerialMsgLib}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestClient4/libraries/XSerialMsgLib/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestClient4/libraries/XToolsLib}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestClient4/libraries/XToolsLib/src}&quot;"/>
 								</option>
 								<inputType id="io.sloeber.compiler.cpp.sketch.input.1245433049" name="CPP source files" superClass="io.sloeber.compiler.cpp.sketch.input"/>
 							</tool>
@@ -40,6 +48,14 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestMaster/libraries/XToolsLib/src}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestMaster/libraries/SoftwareSerial}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestMaster/libraries/SoftwareSerial/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestClient4/core/core}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestClient4/core/variant}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestClient4/libraries/SoftwareSerial}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestClient4/libraries/SoftwareSerial/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestClient4/libraries/XSerialMsgLib}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestClient4/libraries/XSerialMsgLib/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestClient4/libraries/XToolsLib}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestClient4/libraries/XToolsLib/src}&quot;"/>
 								</option>
 								<inputType id="io.sloeber.compiler.c.sketch.input.1285754000" name="C Source Files" superClass="io.sloeber.compiler.c.sketch.input"/>
 							</tool>
@@ -53,6 +69,14 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestMaster/libraries/XToolsLib/src}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestMaster/libraries/SoftwareSerial}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestMaster/libraries/SoftwareSerial/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestClient4/core/core}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestClient4/core/variant}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestClient4/libraries/SoftwareSerial}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestClient4/libraries/SoftwareSerial/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestClient4/libraries/XSerialMsgLib}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestClient4/libraries/XSerialMsgLib/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestClient4/libraries/XToolsLib}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestClient4/libraries/XToolsLib/src}&quot;"/>
 								</option>
 								<inputType id="io.sloeber.compiler.S.sketch.input.2006850435" name="Assembly source files" superClass="io.sloeber.compiler.S.sketch.input"/>
 							</tool>

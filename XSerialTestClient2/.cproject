@@ -19,40 +19,40 @@
 							<builder buildPath="${workspace_loc:/XSerialTestClient2}/Release" id="io.sloeber.sketch.builder.247986797" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="Arduino sketch builder" superClass="io.sloeber.sketch.builder"/>
 							<tool id="io.sloeber.tool.sketch.compiler.cpp.283438329" name="Arduino C++ Compiler" superClass="io.sloeber.tool.sketch.compiler.cpp">
 								<option id="io.sloeber.compiler.cpp.sketch.option.incpath.989297613" name="Include Paths (-I)" superClass="io.sloeber.compiler.cpp.sketch.option.incpath" valueType="includePath">
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestClient2/core/core}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestClient2/core/variant}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestClient2/libraries/XSerialMsgLib}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestClient2/libraries/XSerialMsgLib/src}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestClient2/libraries/XToolsLib}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestClient2/libraries/XToolsLib/src}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestClient2/libraries/SoftwareSerial}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestClient2/libraries/SoftwareSerial/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestClient6/core/core}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestClient6/core/variant}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestClient6/libraries/SoftwareSerial}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestClient6/libraries/SoftwareSerial/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestClient6/libraries/XSerialMsgLib}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestClient6/libraries/XSerialMsgLib/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestClient6/libraries/XToolsLib}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestClient6/libraries/XToolsLib/src}&quot;"/>
 								</option>
 								<inputType id="io.sloeber.compiler.cpp.sketch.input.560766633" name="CPP source files" superClass="io.sloeber.compiler.cpp.sketch.input"/>
 							</tool>
 							<tool id="io.sloeber.tool.compiler.c.1362846918" name="Arduino C Compiler" superClass="io.sloeber.tool.compiler.c">
 								<option id="io.sloeber.compiler.c.sketch.option.incpath.1585748661" name="Include Paths (-I)" superClass="io.sloeber.compiler.c.sketch.option.incpath" valueType="includePath">
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestClient2/core/core}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestClient2/core/variant}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestClient2/libraries/XSerialMsgLib}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestClient2/libraries/XSerialMsgLib/src}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestClient2/libraries/XToolsLib}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestClient2/libraries/XToolsLib/src}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestClient2/libraries/SoftwareSerial}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestClient2/libraries/SoftwareSerial/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestClient6/core/core}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestClient6/core/variant}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestClient6/libraries/SoftwareSerial}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestClient6/libraries/SoftwareSerial/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestClient6/libraries/XSerialMsgLib}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestClient6/libraries/XSerialMsgLib/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestClient6/libraries/XToolsLib}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestClient6/libraries/XToolsLib/src}&quot;"/>
 								</option>
 								<inputType id="io.sloeber.compiler.c.sketch.input.1802385417" name="C Source Files" superClass="io.sloeber.compiler.c.sketch.input"/>
 							</tool>
 							<tool id="io.sloeber.tool.sketch.compiler.s.85433591" name="Arduino Assembler" superClass="io.sloeber.tool.sketch.compiler.s">
 								<option id="io.sloeber.compiler.asm.sketch.option.incpath.903349136" name="Include Paths (-I)" superClass="io.sloeber.compiler.asm.sketch.option.incpath" valueType="includePath">
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestClient2/core/core}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestClient2/core/variant}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestClient2/libraries/XSerialMsgLib}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestClient2/libraries/XSerialMsgLib/src}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestClient2/libraries/XToolsLib}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestClient2/libraries/XToolsLib/src}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestClient2/libraries/SoftwareSerial}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestClient2/libraries/SoftwareSerial/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestClient6/core/core}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestClient6/core/variant}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestClient6/libraries/SoftwareSerial}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestClient6/libraries/SoftwareSerial/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestClient6/libraries/XSerialMsgLib}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestClient6/libraries/XSerialMsgLib/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestClient6/libraries/XToolsLib}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/XSerialTestClient6/libraries/XToolsLib/src}&quot;"/>
 								</option>
 								<inputType id="io.sloeber.compiler.S.sketch.input.1238112170" name="Assembly source files" superClass="io.sloeber.compiler.S.sketch.input"/>
 							</tool>
