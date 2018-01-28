@@ -7,6 +7,7 @@
 #include <SerialPort.h>
 #include"DummySerialPort.h"
 
+#define PIN_LED_CONNECTED 2
 
 SoftSerialPort* pSerialPort6;
 
@@ -27,6 +28,10 @@ void setup() {
 
 	MPRINTLNS("");
 	MPRINTLNS("################################ setup SerialTestClient (7) ######################################");
+
+	pinMode(PIN_LED_CONNECTED,OUTPUT);
+	digitalWrite(PIN_LED_CONNECTED,LOW);
+
 	pNet=SerialNodeNet::init(7);
 	pSerialPort6 = new SoftSerialPort(8, 9, 6);
 	pSerialPort6->createDataBuffer(sizeof(unsigned long));
@@ -34,6 +39,7 @@ void setup() {
 	pNet->setOnMessageHandler(&messageHandler);
 	pNet->setOnPreConnectHandler(&preConnectHandler);
 	pNet->createNode(1, false, 4, 1);
+	pNet->createNode(2, false, 4, 2);
 
 	XPRINTFREE;
     Serial.flush();
@@ -48,8 +54,10 @@ void loop() {
 	pNet->processNodes();
 
 	if (!pNet->areAllNodesConnected()) {
+		digitalWrite(PIN_LED_CONNECTED,LOW);
 		return;
 	}
+	digitalWrite(PIN_LED_CONNECTED,HIGH);
 
 
 
