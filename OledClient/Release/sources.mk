@@ -41,7 +41,6 @@ libraries/Adafruit_GFX_Library \
 libraries/Adafruit_GFX_Library/fontconvert \
 libraries/Adafruit_SSD1306 \
 libraries/SPI/src \
-libraries/SoftwareSerial/src \
 libraries/Wire/src \
 libraries/Wire/src/utility \
 libraries/XToolsLib/Release \

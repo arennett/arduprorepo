@@ -21,16 +21,14 @@
 								<option id="io.sloeber.compiler.cpp.sketch.option.incpath.743080354" name="Include Paths (-I)" superClass="io.sloeber.compiler.cpp.sketch.option.incpath" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/OledClient/core/core}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/OledClient/core/variant}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/OledClient/libraries/XToolsLib}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/OledClient/libraries/XToolsLib/src}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/OledClient/libraries/SoftwareSerial}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/OledClient/libraries/SoftwareSerial/src}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/OledClient/libraries/Adafruit_GFX_Library}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/OledClient/libraries/Adafruit_SSD1306}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/OledClient/libraries/Wire}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/OledClient/libraries/Wire/src}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/OledClient/libraries/SPI}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/OledClient/libraries/SPI/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/OledClient/libraries/Adafruit_GFX_Library}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/OledClient/libraries/XToolsLib}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/OledClient/libraries/XToolsLib/src}&quot;"/>
 								</option>
 								<inputType id="io.sloeber.compiler.cpp.sketch.input.2119616533" name="CPP source files" superClass="io.sloeber.compiler.cpp.sketch.input"/>
 							</tool>
@@ -38,16 +36,14 @@
 								<option id="io.sloeber.compiler.c.sketch.option.incpath.1997194179" name="Include Paths (-I)" superClass="io.sloeber.compiler.c.sketch.option.incpath" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/OledClient/core/core}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/OledClient/core/variant}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/OledClient/libraries/XToolsLib}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/OledClient/libraries/XToolsLib/src}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/OledClient/libraries/SoftwareSerial}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/OledClient/libraries/SoftwareSerial/src}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/OledClient/libraries/Adafruit_GFX_Library}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/OledClient/libraries/Adafruit_SSD1306}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/OledClient/libraries/Wire}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/OledClient/libraries/Wire/src}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/OledClient/libraries/SPI}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/OledClient/libraries/SPI/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/OledClient/libraries/Adafruit_GFX_Library}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/OledClient/libraries/XToolsLib}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/OledClient/libraries/XToolsLib/src}&quot;"/>
 								</option>
 								<inputType id="io.sloeber.compiler.c.sketch.input.470672591" name="C Source Files" superClass="io.sloeber.compiler.c.sketch.input"/>
 							</tool>
@@ -55,16 +51,14 @@
 								<option id="io.sloeber.compiler.asm.sketch.option.incpath.1352289825" name="Include Paths (-I)" superClass="io.sloeber.compiler.asm.sketch.option.incpath" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/OledClient/core/core}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/OledClient/core/variant}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/OledClient/libraries/XToolsLib}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/OledClient/libraries/XToolsLib/src}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/OledClient/libraries/SoftwareSerial}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/OledClient/libraries/SoftwareSerial/src}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/OledClient/libraries/Adafruit_GFX_Library}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/OledClient/libraries/Adafruit_SSD1306}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/OledClient/libraries/Wire}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/OledClient/libraries/Wire/src}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/OledClient/libraries/SPI}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/OledClient/libraries/SPI/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/OledClient/libraries/Adafruit_GFX_Library}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/OledClient/libraries/XToolsLib}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/OledClient/libraries/XToolsLib/src}&quot;"/>
 								</option>
 								<inputType id="io.sloeber.compiler.S.sketch.input.717978252" name="Assembly source files" superClass="io.sloeber.compiler.S.sketch.input"/>
 							</tool>

@@ -24,7 +24,7 @@ OledMessageQueue::~OledMessageQueue() {
 void OledMessageQueue::push(OledMessage* pMessage) {
 
 	if (count >= QUEUE_LENGTH) {
-		XPRINTLN("OledMessageStack::push> queue overflow, delete oldest entry");
+		XPRINTLNS("OledMessageQueue::push> queue overflow");
 	 	delete pop();
 	}
 
@@ -68,7 +68,7 @@ OledMessage* OledMessageQueue::pop() {
 	}
 	if (isEmpty()) {
 		digitalWrite(pin_oled_data,LOW);
-		MPRINTLN(" OledMessageQueue::pop> EMPTY");
+		MPRINTLNS(" OledMessageQueue::pop> EMPTY");
 
 	}
 

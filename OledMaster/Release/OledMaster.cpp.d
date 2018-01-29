@@ -14,8 +14,8 @@ OledMaster.cpp.o: ..\OledMaster.cpp \
  C:\sloeber\sloeber4.1\arduinoPlugin\packages\arduino\hardware\avr\1.6.20\libraries\Wire\src/Wire.h \
  C:\sloeber\sloeber4.1\arduinoPlugin\packages\arduino\hardware\avr\1.6.20\cores\arduino/Stream.h \
  C:\Users\User\git\ardulibrepo\XToolsLib\src/tools.h \
- C:\Users\User\git\ardulibrepo\XToolsLib\src/OledMessage.h \
- ..\OledMessageQueue.h
+ ..\OledMessageQueue.h \
+ C:\Users\User\git\ardulibrepo\XToolsLib\src/OledMessage.h
 
 C:\sloeber\sloeber4.1\arduinoPlugin\packages\arduino\hardware\avr\1.6.20\cores\arduino/Arduino.h:
 
@@ -47,6 +47,6 @@ C:\sloeber\sloeber4.1\arduinoPlugin\packages\arduino\hardware\avr\1.6.20\cores\a
 
 C:\Users\User\git\ardulibrepo\XToolsLib\src/tools.h:
 
-C:\Users\User\git\ardulibrepo\XToolsLib\src/OledMessage.h:
-
 ..\OledMessageQueue.h:
+
+C:\Users\User\git\ardulibrepo\XToolsLib\src/OledMessage.h:

@@ -1,7 +1,7 @@
 #include "Arduino.h"
 #include <Wire.h>
 #include "OledDisplay.h"
-#include "OledMessage.h"
+#include <OledMessage.h>
 #include <tools.h>
 
 #define PIN_OLED_DATA 2  // HIGH  ...data available
@@ -13,8 +13,8 @@ OledMessage oledMessage;
 void setup() {
 	Serial.begin(9600);
 
-	XPRINTLN("");
-	XPRINTLN("OLED CLIENT");
+	XPRINTLNS("");
+	XPRINTLNS("OLED CLIENT");
 
 	pinMode(PIN_OLED_DATA, INPUT);
 
@@ -43,24 +43,34 @@ void loop() {
 
 		if (idx > 0) {
 			MPRINTLNSVAL("OLED CLient : cmd: ",oledMessage.getCmd());
+			tParams* pPar=oledMessage.getTParams();
 			switch  (oledMessage.getCmd()) {
 			case tOledCmd::CMD_UPDATE:
-				MPRINTLN("OLED CLient : CMD_UPDATE");
+				MPRINTLNS("OLED CLient : CMD_UPDATE");
 				oledDisplay.update();
 				break;
 
 			case tOledCmd::CMD_CLEAR:
-				MPRINTLN("OLED CLient : CMD_CLEAR");
+				MPRINTLNS("OLED CLient : CMD_CLEAR");
 				oledDisplay.clear();
 				break;
+			case tOledCmd::CMD_LINE:
+				MPRINTLNS("OLED CLient : CMD_LINE");
+				oledDisplay.drawLine(pPar->a.p0.x1,pPar->a.p1.y1, pPar->a.p2.x2, pPar->a.p3.y2, pPar->a.color);
+				break;
 			case tOledCmd::CMD_RECTANGL:
-				MPRINTLN("OLED CLient : CMD_RECTANG");
-				oledDisplay.rectangle(oledMessage.getParams());
+				MPRINTLNS("OLED CLient : CMD_RECTANG");
+				oledDisplay.drawRectangle(pPar->a.p0.x1,pPar->a.p1.y1, pPar->a.p2.x2, pPar->a.p3.y2, pPar->a.color);
 				break;
 
 			case tOledCmd::CMD_CIRCLE:
-				MPRINTLN("OLED CLient : CMD_CIRCLE");
-				oledDisplay.circle(oledMessage.getParams());
+				MPRINTLNS("OLED CLient : CMD_CIRCLE");
+				oledDisplay.drawCircle(pPar->a.p0.x1,pPar->a.p1.y1, pPar->a.p2.r, pPar->a.color);
+				break;
+
+			case tOledCmd::CMD_SCREEN1: // main Scree
+				MPRINTLNS("OLED CLient : CMD_SCREEN1");
+						;
 				break;
 			}
 		}

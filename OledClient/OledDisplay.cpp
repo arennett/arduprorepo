@@ -52,16 +52,31 @@ void OledDisplay::update() {
 	display.display();
 }
 
-void OledDisplay::rectangle(byte* params) {
+void OledDisplay::drawLine(byte x, byte y, byte x2, byte y2,byte fontSize) {
 	if (OLED_INACTIVE) return;
-	display.drawRect(params[0], params[1], params[2]-params[0],params[3]-params[1],WHITE);
-	display.display();
+	display.drawLine(x, y, x2,y2,WHITE);
+
  }
 
-void OledDisplay::circle(byte* params) {
+void OledDisplay::drawRectangle(byte x, byte y, byte x2, byte y2,byte fontSize) {
 	if (OLED_INACTIVE) return;
-	display.drawCircle(params[0], params[1],params[2],params[3]);
-	display.display();
+	display.drawRect(x, y, x2-x,y2-y,WHITE);
+
+ }
+
+void OledDisplay::drawCircle(byte x,byte y,byte r,byte fontColor) {
+	if (OLED_INACTIVE) return;
+	display.drawCircle(x, y,r,fontColor);
+
+ }
+
+void OledDisplay::drawText(char* pText,byte x,byte y,byte fontSize,byte fontColor) {
+	if (OLED_INACTIVE) return;
+	display.setTextSize(fontSize);
+	display.setTextColor(fontColor);
+	display.setCursor(x,y);
+	display.print(pText);
+
  }
 
 
@@ -146,12 +161,12 @@ void OledDisplay::demo() {
 	  display.setTextSize(1);
 	  display.setTextColor(WHITE);
 	  display.setCursor(0,0);
-	  display.println("Hello, world!");
+	  //display.println("Hello, world!");
 	  display.setTextColor(BLACK, WHITE); // 'inverted' text
 	  display.println(3.141592);
 	  display.setTextSize(2);
 	  display.setTextColor(WHITE);
-	  display.print("0x"); display.println(0xDEADBEEF, HEX);
+	  //display.print("0x"); display.println(0xDEADBEEF, HEX);
 	  display.display();
 	  delay(2000);
 	  display.clearDisplay();
@@ -245,7 +260,7 @@ void OledDisplay::testHello(void) {
 	display.setTextSize(1);
 	display.setTextColor(WHITE);
 	display.setCursor(0,0);
-	display.println("Hello, world!");
+	//display.println("Hello, world!");
     display.display();
 }
 
@@ -376,7 +391,7 @@ void OledDisplay::testscrolltext(void) {
   display.setTextColor(WHITE);
   display.setCursor(10,0);
   display.clearDisplay();
-  display.println("André");
+  //display.println("André");
   display.display();
   delay(1);
 

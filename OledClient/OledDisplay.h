@@ -56,8 +56,10 @@ public:
     void init();
     void clear();
     void update();
-    void rectangle(byte* params);
-    void circle(byte* params);
+    void drawLine(byte x, byte y, byte x2, byte y2,byte fontSize);
+    void drawRectangle(byte x, byte y, byte x2, byte y2,byte fontSize);
+    void drawCircle(byte x,byte y,byte r,byte fontColor);
+    void drawText(char* pText,byte x,byte y,byte fontSize,byte fontColor);
 
 
     // this function must be called inside loop()
