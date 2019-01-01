@@ -18,6 +18,21 @@ void setup()
 	Wire.begin(I2C_ADDRESS);                // join i2c bus with address #8
 	Wire.onRequest(onRequestEvent);
 	XPRINTFREE;
+	pMessage = new OledMessage(tOledCmd::CMD_CLEAR);
+	messageQueue.push(pMessage);
+	pMessage = new OledMessage(tOledCmd::CMD_BMP_START);
+	messageQueue.push(pMessage);
+	pMessage = new OledMessage(tOledCmd::CMD_UPDATE);
+	messageQueue.push(pMessage);
+	delay(3000);
+	pMessage = new OledMessage(tOledCmd::CMD_BMP_GAME_SELECT);
+	messageQueue.push(pMessage);
+	pMessage = new OledMessage(tOledCmd::CMD_UPDATE);
+	messageQueue.push(pMessage);
+	delay(3000);
+
+
+
 // Add your initialization code here
 }
 
