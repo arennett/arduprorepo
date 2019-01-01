@@ -20,7 +20,7 @@ OledClient.cpp.o: ..\OledClient.cpp \
  C:\sloeber\sloeber4.1\arduinoPlugin\packages\arduino\hardware\avr\1.6.20\cores\arduino/Print.h \
  C:\Users\User\Documents\Arduino\libraries\Adafruit_GFX_Library/gfxfont.h \
  C:\Users\User\git\ardulibrepo\XToolsLib\src/OledMessage.h \
- C:\Users\User\git\ardulibrepo\XToolsLib\src/tools.h
+ C:\Users\User\git\ardulibrepo\XToolsLib\src/tools.h ..\bitmaps.h
 
 C:\sloeber\sloeber4.1\arduinoPlugin\packages\arduino\hardware\avr\1.6.20\cores\arduino/Arduino.h:
 
@@ -65,3 +65,5 @@ C:\Users\User\Documents\Arduino\libraries\Adafruit_GFX_Library/gfxfont.h:
 C:\Users\User\git\ardulibrepo\XToolsLib\src/OledMessage.h:
 
 C:\Users\User\git\ardulibrepo\XToolsLib\src/tools.h:
+
+..\bitmaps.h:

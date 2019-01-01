@@ -3,6 +3,7 @@
 #include "OledDisplay.h"
 #include <OledMessage.h>
 #include <tools.h>
+#include "bitmaps.h"
 
 #define PIN_OLED_DATA 2  // HIGH  ...data available
 OledDisplay oledDisplay;
@@ -68,9 +69,13 @@ void loop() {
 				oledDisplay.drawCircle(pPar->a.p0.x1,pPar->a.p1.y1, pPar->a.p2.r, pPar->a.color);
 				break;
 
-			case tOledCmd::CMD_SCREEN1: // main Scree
-				MPRINTLNS("OLED CLient : CMD_SCREEN1");
-						;
+			case tOledCmd::CMD_BMP_START: // main Scree
+				MPRINTLNS("OLED CLient : CMD_BMP_START");
+				oledDisplay.drawBitMap(0, 0, bmp_startscreen, SSD1306_LCDWIDTH, SSD1306_LCDHEIGHT, BLACK,WHITE);
+				break;
+			case tOledCmd::CMD_BMP_GAME_SELECT: // main Scree
+				MPRINTLNS("OLED CLient : CMD_BMP_GAME_SELECT");
+				oledDisplay.drawBitMap(0, 0, bmp_screen_gameselect, SSD1306_LCDWIDTH, SSD1306_LCDHEIGHT, BLACK,WHITE);
 				break;
 			}
 		}

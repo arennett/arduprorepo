@@ -76,8 +76,12 @@ void OledDisplay::drawText(char* pText,byte x,byte y,byte fontSize,byte fontColo
 	display.setTextColor(fontColor);
 	display.setCursor(x,y);
 	display.print(pText);
-
  }
+// Draw a PROGMEM-resident 1-bit image at the specified (x,y) position,
+// using the specified foreground color (unset bits are transparent).
+void OledDisplay::drawBitMap(int16_t x, int16_t y, const uint8_t bitmap[], int16_t w, int16_t h, uint16_t colorFore, uint16_t colorBack) {
+	  display.drawBitmap(x,y,bitmap, w, h, colorFore,colorBack);
+}
 
 
 void OledDisplay::demo() {

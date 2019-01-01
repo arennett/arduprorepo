@@ -60,6 +60,9 @@ public:
     void drawRectangle(byte x, byte y, byte x2, byte y2,byte fontSize);
     void drawCircle(byte x,byte y,byte r,byte fontColor);
     void drawText(char* pText,byte x,byte y,byte fontSize,byte fontColor);
+    // Draw a PROGMEM-resident 1-bit image at the specified (x,y) position,
+    // using the specified foreground color (unset bits are transparent).
+    void drawBitMap(int16_t x, int16_t y, const uint8_t bitmap[], int16_t w, int16_t h, uint16_t colorFore, uint16_t colorBack);
 
 
     // this function must be called inside loop()
