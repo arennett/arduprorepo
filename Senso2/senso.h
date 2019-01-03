@@ -8,11 +8,11 @@
 
 #include "pitches.h"
 
-#define IN_Y 2
-#define IN_B 3
-#define IN_G 4
-#define IN_R 5
-#define IN_W 6
+#define IN_Y 3
+#define IN_B 4
+#define IN_G 5
+#define IN_R 6
+#define IN_W 7
 
 #define OUT_Y 8
 #define OUT_B 9
@@ -20,7 +20,7 @@
 #define OUT_R 11
 #define OUT_W 12
 
-#define TONE_PIN 7
+#define TONE_PIN 13
 
 #define ANZ_COLORS 5
 

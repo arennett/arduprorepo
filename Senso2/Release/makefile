@@ -9,6 +9,7 @@ RM := del
 # All of the sources participating in the build are defined here
 -include sources.mk
 -include subdir.mk
+-include libraries\XToolsLib\src\subdir.mk
 -include libraries\Wire\src\utility\subdir.mk
 -include libraries\Wire\src\subdir.mk
 -include libraries\SPI\src\subdir.mk
@@ -69,24 +70,24 @@ all: Senso2
 Senso2: $(HEX)
 	@echo 'Building target: $@'
 	@echo 'Printing size:'
-	"C:\sloeber\sloeber4.1\/arduinoPlugin/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/bin/avr-size" -A "C:/Users/User/git/arduprorepo/Senso2/Release/Senso2.elf"
+	"C:\sloeber\sloeber4.3.1\arduinoPlugin\packages\arduino\tools\avr-gcc\5.4.0-atmel3.6.1-arduino2/bin/avr-size" -A "C:/Users/User/git/arduprorepo/Senso2/Release/Senso2.elf"
 	@echo 'Finished building target: $@'
 	@echo ' '
 
 C:\Users\User\git\arduprorepo\Senso2\Release\arduino.ar: $(AR_OBJ)
 	@echo 'Starting archiver'
-	"C:\sloeber\sloeber4.1\/arduinoPlugin/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/bin/avr-gcc-ar" rcs    C:/Users/User/git/arduprorepo/Senso2/Release/arduino.ar $(AR_OBJ)
+	"C:\sloeber\sloeber4.3.1\arduinoPlugin\packages\arduino\tools\avr-gcc\5.4.0-atmel3.6.1-arduino2/bin/avr-gcc-ar" rcs     C:/Users/User/git/arduprorepo/Senso2/Release/arduino.ar $(AR_OBJ)
 	@echo 'Finished building: $@'
 	@echo ' '
 
 Senso2.elf: $(LINK_OBJ) $(AR)
 	@echo 'Starting combiner'
-	"C:\sloeber\sloeber4.1\/arduinoPlugin/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/bin/avr-gcc" -Wall -Wextra -Os -g -flto -fuse-linker-plugin -Wl,--gc-sections -mmcu=atmega328p -o "C:\Users\User\git\arduprorepo\Senso2/Release/Senso2.elf"   $(LINK_OBJ) $(AR)   C:/Users/User/git/arduprorepo/Senso2/Release/arduino.ar  "-LC:\Users\User\git\arduprorepo\Senso2/Release" -lm
+	"C:\sloeber\sloeber4.3.1\arduinoPlugin\packages\arduino\tools\avr-gcc\5.4.0-atmel3.6.1-arduino2/bin/avr-gcc" -Wall -Wextra -Os -g -flto -fuse-linker-plugin -Wl,--gc-sections -mmcu=atmega328p  -o "C:/Users/User/git/arduprorepo/Senso2/Release/Senso2.elf"   $(LINK_OBJ)   C:/Users/User/git/arduprorepo/Senso2/Release/arduino.ar  "-LC:/Users/User/git/arduprorepo/Senso2/Release" -lm
 	@echo 'Finished building: $@'
 	@echo ' '
 
 Senso2.hex: $(ELF)
-	@echo 'Create eeprom image'
+	@echo 'Do all objcopy commands'
 	${A.RECIPE.OBJCOPY.EEP.PATTERN}
 	${A.RECIPE.OBJCOPY.HEX.PATTERN}
 	@echo 'Finished building: $@'
@@ -98,6 +99,5 @@ clean:
 	-@echo ' '
 
 .PHONY: all clean dependents
-.SECONDARY:
 
 -include ..\makefile.targets

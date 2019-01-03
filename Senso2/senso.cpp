@@ -73,7 +73,7 @@ void startGame() {
 
 void checkButtons() {
 	tLedColor colorButton;
-	Serial.println("check Buttoons");
+	Serial.println("check Buttons");
 	Serial.write("setSequenceMode: ");
 	Serial.println(currentSeqMode);
 	for (int i = 0; i < ANZ_COLORS; i++) {

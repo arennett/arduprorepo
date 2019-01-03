@@ -61,5 +61,10 @@
 			<type>2</type>
 			<location>G:/git/ardulibrepo/ToolsLib2</location>
 		</link>
+		<link>
+			<name>libraries/XToolsLib</name>
+			<type>2</type>
+			<location>C:/Users/User/git/ardulibrepo/XToolsLib</location>
+		</link>
 	</linkedResources>
 </projectDescription>
