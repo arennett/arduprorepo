@@ -2,10 +2,14 @@
 #include <Wire.h>
 #include "OledDisplay.h"
 #include <OledMessage.h>
+//#define MPRINT_ON
 #include <tools.h>
 #include "bitmaps.h"
 
+
 #define PIN_OLED_DATA 2  // HIGH  ...data available
+
+
 OledDisplay oledDisplay;
 #define I2C_ADDRESS_OLED_MASTER  0x08
 int freeRam2();
@@ -15,8 +19,8 @@ void setup() {
 	Serial.begin(9600);
 
 	XPRINTLNS("");
-	XPRINTLNS("OLED CLIENT");
-
+	XPRINTLNS("OLED CLIENT V1");
+	MPRINTLN("MPRINT IS ON");
 	pinMode(PIN_OLED_DATA, INPUT);
 
 	oledDisplay.init();

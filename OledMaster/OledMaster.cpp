@@ -67,7 +67,7 @@ void loop()
 	if (i > 40) {
 		i=0;
 	}
-	delay(100);
+	delay(300);
 
 
 //Add your repeated code here

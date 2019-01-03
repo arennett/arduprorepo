@@ -14,7 +14,6 @@ CXX_SRCS :=
 C++_SRCS := 
 PDE_SRCS := 
 CC_SRCS := 
-AR_SRCS := 
 C_SRCS := 
 C_UPPER_DEPS := 
 PDE_DEPS := 
@@ -36,15 +35,15 @@ CPP_DEPS :=
 # Every subdirectory with source files must be described here
 SUBDIRS := \
 . \
-core/core \
-libraries/Adafruit_GFX_Library \
-libraries/Adafruit_GFX_Library/fontconvert \
-libraries/Adafruit_SSD1306 \
-libraries/SPI/src \
-libraries/Wire/src \
-libraries/Wire/src/utility \
-libraries/XToolsLib/Release \
-libraries/XToolsLib/Release/core \
-libraries/XToolsLib/Release/src \
-libraries/XToolsLib/src \
+core\core \
+libraries\Adafruit_GFX_Library \
+libraries\Adafruit_GFX_Library\fontconvert \
+libraries\Adafruit_SSD1306 \
+libraries\SPI\src \
+libraries\Wire\src \
+libraries\Wire\src\utility \
+libraries\XToolsLib\Release \
+libraries\XToolsLib\Release\core \
+libraries\XToolsLib\Release\src \
+libraries\XToolsLib\src \
 

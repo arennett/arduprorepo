@@ -75,24 +75,24 @@ all: OledClient
 OledClient: $(HEX)
 	@echo 'Building target: $@'
 	@echo 'Printing size:'
-	"C:\sloeber\sloeber4.1\/arduinoPlugin/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/bin/avr-size" -A "C:/Users/User/git/arduprorepo/OledClient/Release/OledClient.elf"
+	"C:\sloeber\sloeber4.3.1\arduinoPlugin\packages\arduino\tools\avr-gcc\5.4.0-atmel3.6.1-arduino2/bin/avr-size" -A "C:/Users/User/git/arduprorepo/OledClient/Release/OledClient.elf"
 	@echo 'Finished building target: $@'
 	@echo ' '
 
 C:\Users\User\git\arduprorepo\OledClient\Release\arduino.ar: $(AR_OBJ)
 	@echo 'Starting archiver'
-	"C:\sloeber\sloeber4.1\/arduinoPlugin/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/bin/avr-gcc-ar" rcs    C:/Users/User/git/arduprorepo/OledClient/Release/arduino.ar $(AR_OBJ)
+	"C:\sloeber\sloeber4.3.1\arduinoPlugin\packages\arduino\tools\avr-gcc\5.4.0-atmel3.6.1-arduino2/bin/avr-gcc-ar" rcs     C:/Users/User/git/arduprorepo/OledClient/Release/arduino.ar $(AR_OBJ)
 	@echo 'Finished building: $@'
 	@echo ' '
 
 OledClient.elf: $(LINK_OBJ) $(AR)
 	@echo 'Starting combiner'
-	"C:\sloeber\sloeber4.1\/arduinoPlugin/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/bin/avr-gcc" -Wall -Wextra -Os -g -flto -fuse-linker-plugin -Wl,--gc-sections -mmcu=atmega328p -o "C:\Users\User\git\arduprorepo\OledClient/Release/OledClient.elf"   $(LINK_OBJ) $(AR)   C:/Users/User/git/arduprorepo/OledClient/Release/arduino.ar  "-LC:\Users\User\git\arduprorepo\OledClient/Release" -lm
+	"C:\sloeber\sloeber4.3.1\arduinoPlugin\packages\arduino\tools\avr-gcc\5.4.0-atmel3.6.1-arduino2/bin/avr-gcc" -Wall -Wextra -Os -g -flto -fuse-linker-plugin -Wl,--gc-sections -mmcu=atmega328p  -o "C:/Users/User/git/arduprorepo/OledClient/Release/OledClient.elf"   $(LINK_OBJ)   C:/Users/User/git/arduprorepo/OledClient/Release/arduino.ar  "-LC:/Users/User/git/arduprorepo/OledClient/Release" -lm
 	@echo 'Finished building: $@'
 	@echo ' '
 
 OledClient.hex: $(ELF)
-	@echo 'Create eeprom image'
+	@echo 'Do all objcopy commands'
 	${A.RECIPE.OBJCOPY.EEP.PATTERN}
 	${A.RECIPE.OBJCOPY.HEX.PATTERN}
 	@echo 'Finished building: $@'
@@ -104,6 +104,5 @@ clean:
 	-@echo ' '
 
 .PHONY: all clean dependents
-.SECONDARY:
 
 -include ..\makefile.targets
