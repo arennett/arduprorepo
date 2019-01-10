@@ -26,23 +26,24 @@
 #define PIN_DATA  11
 
 #define OUT_CENTER 0
-#define OUT_W 1
-#define OUT_Y 2
-#define OUT_B 3
-#define OUT_G 4
-#define OUT_R 5
 
+#define OUT_Y 1
+#define OUT_B 2
+#define OUT_G 3
+#define OUT_R 4
+#define OUT_W 5
 
 #define TONE_PIN 13
 
 
 
 
-typedef enum {center=0,white,yellow,blue,green,red,ANZ_COLORS=red+1} tLedColor;
+typedef enum {center=0,yellow,blue,green,red,white,ANZ_COLORS=white+1} tLedColor;
+typedef enum {round3,flicker1,flicker3,flicker6} tLedAnimation;
 typedef enum {off,demo,iotest,listening,writing} tSequenceMode;
 
-unsigned char pinButton[]  	=	{IN_CENTER,IN_W,IN_Y,IN_B,IN_G,IN_R};
+unsigned char pinButton[]  	=	{IN_CENTER,IN_Y,IN_B,IN_G,IN_R,IN_W};
 unsigned int  tones[] 		=	{NOTE_C4,NOTE_G4,NOTE_A4,NOTE_C3,NOTE_B0};
-unsigned char pinLED[]   	=	{OUT_CENTER,OUT_W,OUT_Y,OUT_B,OUT_G,OUT_R};
+unsigned char pinLED[]   	=	{OUT_CENTER,OUT_Y,OUT_B,OUT_G,OUT_R,OUT_W};
 
 #endif

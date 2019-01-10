@@ -1,5 +1,4 @@
 #include "Arduino.h"
-#define MPRINT_ON
 #include <tools.h>
 #include "senso.h"
 #include "SimpleTimer.h"
@@ -17,6 +16,7 @@ void setSequenceMode(tSequenceMode mode);
 tLedColor getNextColor();
 void flashNext();
 void speedUp();
+void animationLEDS(tLedAnimation ledAnimation, tLedColor ledColor = center);
 
 tLedColor currentColor = yellow;
 tSequenceMode currentSeqMode = off;
@@ -33,12 +33,13 @@ int lastSeqElIdx = -1;
 int timerIdflashNext, timerIdSpeedUp;
 tLedColor colorSequence[MAX_SEQUENCE_LENGTH];
 Bounce bouncer[ANZ_COLORS - 1];
-
+#define MPRINT_ON
 void setup() {
 
 	Serial.begin(9600);
 	XPRINTLNS("");
 	XPRINTLNS("SENSO 2");
+	XPRINTFREE;
 
 	pinMode(PIN_LATCH, OUTPUT);
 	pinMode(PIN_DATA, OUTPUT);
@@ -52,7 +53,10 @@ void setup() {
 	}
 
 	timerIdflashNext = timer.setInterval(10000, flashNext);
-	setSequenceMode(tSequenceMode::iotest);
+	animationLEDS(tLedAnimation::round3);
+	animationLEDS(tLedAnimation::flicker6, center);
+
+	//setSequenceMode(tSequenceMode::iotest);
 
 }
 
@@ -70,12 +74,8 @@ void startGame() {
 
 	timer.resetDelay(seqIntervall, timerIdflashNext);
 
-	for (int i = 0; i < 3; i++) {
-		ledWrite(center, HIGH);
-		delay(100);
-		ledWrite(center, LOW);
-		delay(100);
-	}
+
+	animationLEDS(tLedAnimation::flicker3, center);
 	lastSeqElIdx = -1;
 	setSequenceMode(tSequenceMode::writing);
 
@@ -83,9 +83,6 @@ void startGame() {
 
 void checkButtons() {
 	tLedColor colorButton;
-	//MPRINTLNS("check Buttons");
-	//Serial.write("setSequenceMode: ");
-	MPRINTLNS(currentSeqMode);
 	for (int i = 0; i < ANZ_COLORS; i++) {
 		colorButton = (tLedColor) i;
 
@@ -105,36 +102,29 @@ void checkButtons() {
 
 				if (currentSeqMode == tSequenceMode::listening) {
 					seqButtonIdx++;
-					Serial.write("listening mode / button: ");
-					MPRINTLNS(colorButton);
-					MPRINT("seqButtonIdx :");
-					MPRINTLNS(seqButtonIdx);
-					MPRINT("expected color: ");
-					MPRINTLNS(colorSequence[seqButtonIdx]);
+					MPRINTLNSVAL("checkButtons:: listening mode / button: ",colorButton);
+					MPRINTLNSVAL("checkButtons:: seqButtonIdx :" ,seqButtonIdx);
+					MPRINTLNSVAL("checkButtons:: expected color:" ,colorSequence[seqButtonIdx]);
+
+
 
 					if (colorButton == colorSequence[seqButtonIdx]) {
 
 						if (seqButtonIdx < lastSeqElIdx) {
 							// ok go on keep on
-							MPRINTLNS("waiting for next button");
+							MPRINTLNS("checkButtons:: waiting for next button");
 							break;
 
 						} else {
 							// gratulation
-							ledWrite(center, HIGH);
-							delay(100);
-							ledWrite(center, LOW);
-							delay(100);
-							MPRINTLNS("yes! start from beginning");
+							animationLEDS(flicker1, center);
+							MPRINTLNS("checkButtons:: yes! start from beginning");
 							setSequenceMode(tSequenceMode::writing);
 						}
 
 					} else {
-						MPRINTLNS("wrong color, you loose");
-						ledWrite(center, HIGH);
-						delay(1000);
-						ledWrite(center, LOW);
-						delay(1000);
+						MPRINTLNS("checkButtons:: wrong color, you loose");
+						animationLEDS(tLedAnimation::flicker6, center);
 						ledWrite(colorSequence[seqButtonIdx], HIGH);
 						delay(500);
 						ledWrite(colorSequence[seqButtonIdx], LOW);
@@ -163,8 +153,7 @@ bool isButtonPressed(tLedColor color) {
 		ledWrite(color, LOW);
 	}
 	if (isReleased) {
-		MPRINT("Button pressed: ");
-		MPRINTLNS(color);
+		MPRINTLNSVAL("isButtonPressed:: Button pressed: ",color);
 	}
 	return isReleased;
 
@@ -173,10 +162,8 @@ bool isButtonPressed(tLedColor color) {
 void ledWrite(tLedColor color, unsigned char state) {
 	registerWrite((unsigned char) pinLED[color], state);
 	if (state == HIGH) {
-		MPRINTLNS("tone");
+		MPRINTLNSVAL("ledWrite:: LED on:",color);
 		tone(TONE_PIN, tones[color]);
-		MPRINT("LED:");
-		MPRINTLNS(color);
 	} else {
 		noTone(TONE_PIN);
 	}
@@ -216,33 +203,29 @@ void setSequenceMode(tSequenceMode mode) {
 		seqButtonIdx = -1;
 	}
 
-	Serial.write("setSequenceMode: ");
-	MPRINTLNS(currentSeqMode);
+	MPRINTLNSVAL("setSequenceMode:: ",currentSeqMode);
 }
 void flashNext() {
 
 	bool eos = false;
 	ledWrite(currentColor, LOW);
 	if (currentSeqMode > 0) {
-		MPRINT("fn currenseq mode ");
-		MPRINTLNS(currentSeqMode);
+		MPRINTLNSVAL("flashNext:: currentSeqMode ", currentSeqMode);
 	}
 
 	if ((currentSeqMode == tSequenceMode::writing)
 			|| (currentSeqMode == tSequenceMode::demo)) {
 
 		seqFlashIdx++;
-		MPRINT("flashNext flash idx :");
-		MPRINTLNS(seqFlashIdx);
-		MPRINT("flashNext last seq idx :");
-		MPRINTLNS(lastSeqElIdx);
+		MPRINTLNSVAL("flashNext:: seqFlashIdx:",  seqFlashIdx);
+		MPRINTLNSVAL("flashNext:: lastSeqElIdx:", lastSeqElIdx);
 		speedUp();
 		ledWrite(currentColor, LOW);
 		delay(100);
 		if (lastSeqElIdx == MAX_SEQUENCE_LENGTH) {
 			setSequenceMode(tSequenceMode::off);
 			// game over
-			MPRINTLNS("GAME OVER YOU WIN");
+			MPRINTLNS("flashNext:: GAME OVER YOU WIN");
 		}
 
 		if (seqFlashIdx > lastSeqElIdx) {
@@ -282,7 +265,7 @@ void speedUp() {
 tLedColor getNextColor() {
 	if ((currentSeqMode == tSequenceMode::demo)) {
 		if (currentColor == center) {
-			return white;
+			return yellow;
 		} else {
 			return (tLedColor) (currentColor + 1);
 		}
@@ -290,9 +273,9 @@ tLedColor getNextColor() {
 
 		if (seqFlashIdx <= lastSeqElIdx) {
 			currentColor = colorSequence[seqFlashIdx];
-			MPRINT("seq  color: ");
+			MPRINT("getNextColor:: seq  color: ");
 		} else {
-			currentColor = (tLedColor) random(4);
+			currentColor = (tLedColor) (random(ANZ_COLORS)+1);
 			//if (currentColor == red) {
 			//	currentColor = yellow;
 			//} else {
@@ -301,11 +284,58 @@ tLedColor getNextColor() {
 
 			colorSequence[++lastSeqElIdx] = currentColor;
 			setSequenceMode(tSequenceMode::listening);
-			MPRINT("new  color: ");
+			MPRINT("getNextColor:: new  color: ");
 		}
 
 	}
-	//MPRINTLNS(currentColor);
+	MPRINTLN(currentColor);
 	return currentColor;
 
+}
+
+void animationLEDS(tLedAnimation ledAnimation, tLedColor ledColor) {
+
+
+	switch (ledAnimation) {
+	case round3:
+				for (int i = 0; i < 3; i++) {
+					for (tLedColor col = yellow; col <= white; col= (tLedColor)(col+1)) {
+						ledWrite(col, HIGH);
+						delay(50);
+						ledWrite(col, LOW);
+						delay(100);
+
+					}
+
+				}
+				break;
+		case flicker1:
+			for (int i = 0; i < 1; i++) {
+					ledWrite(ledColor, HIGH);
+					delay(100);
+					ledWrite(ledColor, LOW);
+					delay(100);
+
+			}
+			break;
+	case flicker3:
+			for (int i = 0; i < 3; i++) {
+					ledWrite(ledColor, HIGH);
+					delay(100);
+					ledWrite(ledColor, LOW);
+					delay(100);
+
+			}
+			break;
+	case flicker6:
+			for (int i = 0; i < 6; i++) {
+					ledWrite(ledColor, HIGH);
+					delay(100);
+					ledWrite(ledColor, LOW);
+					delay(100);
+
+			}
+			break;
+
+	}
 }

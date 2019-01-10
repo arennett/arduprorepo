@@ -21,10 +21,14 @@ OledMessageQueue::~OledMessageQueue() {
 	// TODO Auto-generated destructor stub
 }
 
+void OledMessageQueue::init() {
+	digitalWrite(pin_oled_data,HIGH);
+}
+
 void OledMessageQueue::push(OledMessage* pMessage) {
 
 	if (count >= QUEUE_LENGTH) {
-		XPRINTLNS("OledMessageQueue::push> queue overflow");
+		XPRINTLNSVAL("OledMessageQueue::push> queue overflow: ",count);
 	 	delete pop();
 	}
 
@@ -34,7 +38,7 @@ void OledMessageQueue::push(OledMessage* pMessage) {
 	}else{
 		pRoot=pMessage;
 	}
-	digitalWrite(pin_oled_data,HIGH);
+	digitalWrite(pin_oled_data,LOW);
 
 	count++;
 	MPRINTLNSVAL("OledMessageStack::push> count: ",count);
@@ -67,7 +71,7 @@ OledMessage* OledMessageQueue::pop() {
 		--count;
 	}
 	if (isEmpty()) {
-		digitalWrite(pin_oled_data,LOW);
+		digitalWrite(pin_oled_data,HIGH);
 		MPRINTLNS(" OledMessageQueue::pop> EMPTY");
 
 	}

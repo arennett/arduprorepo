@@ -11,8 +11,11 @@ senso.cpp.o: ..\senso.cpp \
  C:\sloeber\sloeber4.3.1\arduinoPlugin\packages\arduino\hardware\avr\1.6.23\cores\arduino/Arduino.h \
  C:\sloeber\sloeber4.3.1\arduinoPlugin\packages\arduino\hardware\avr\1.6.23\variants\eightanaloginputs/pins_arduino.h \
  c:\sloeber\sloeber4.3.1\arduinoplugin\packages\arduino\hardware\avr\1.6.23\variants\standard\pins_arduino.h \
- ..\senso.h ..\pitches.h ..\SimpleTimer.h \
- C:\Users\User\Documents\Arduino\libraries\Bounce2-master/Bounce2.h
+ C:\Users\User\git\ardulibrepo\XToolsLib\src/tools.h ..\senso.h \
+ ..\pitches.h ..\SimpleTimer.h \
+ C:\Users\User\Documents\Arduino\libraries\Bounce2-master/Bounce2.h \
+ C:\sloeber\sloeber4.3.1\arduinoPlugin\packages\arduino\hardware\avr\1.6.23\libraries\Wire\src/Wire.h \
+ C:\sloeber\sloeber4.3.1\arduinoPlugin\packages\arduino\hardware\avr\1.6.23\cores\arduino/Stream.h
 
 C:\sloeber\sloeber4.3.1\arduinoPlugin\packages\arduino\hardware\avr\1.6.23\cores\arduino/Arduino.h:
 
@@ -38,6 +41,8 @@ C:\sloeber\sloeber4.3.1\arduinoPlugin\packages\arduino\hardware\avr\1.6.23\varia
 
 c:\sloeber\sloeber4.3.1\arduinoplugin\packages\arduino\hardware\avr\1.6.23\variants\standard\pins_arduino.h:
 
+C:\Users\User\git\ardulibrepo\XToolsLib\src/tools.h:
+
 ..\senso.h:
 
 ..\pitches.h:
@@ -45,3 +50,7 @@ c:\sloeber\sloeber4.3.1\arduinoplugin\packages\arduino\hardware\avr\1.6.23\varia
 ..\SimpleTimer.h:
 
 C:\Users\User\Documents\Arduino\libraries\Bounce2-master/Bounce2.h:
+
+C:\sloeber\sloeber4.3.1\arduinoPlugin\packages\arduino\hardware\avr\1.6.23\libraries\Wire\src/Wire.h:
+
+C:\sloeber\sloeber4.3.1\arduinoPlugin\packages\arduino\hardware\avr\1.6.23\cores\arduino/Stream.h:

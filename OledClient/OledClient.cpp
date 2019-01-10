@@ -2,7 +2,7 @@
 #include <Wire.h>
 #include "OledDisplay.h"
 #include <OledMessage.h>
-//#define MPRINT_ON
+#define MPRINT_ON
 #include <tools.h>
 #include "bitmaps.h"
 
@@ -21,7 +21,7 @@ void setup() {
 	XPRINTLNS("");
 	XPRINTLNS("OLED CLIENT V1");
 	MPRINTLN("MPRINT IS ON");
-	pinMode(PIN_OLED_DATA, INPUT);
+	pinMode(PIN_OLED_DATA, INPUT_PULLUP);
 
 	oledDisplay.init();
 
@@ -32,7 +32,7 @@ void setup() {
 // The loop function is called in an endless loop
 void loop() {
 
-	if (digitalRead(PIN_OLED_DATA) == HIGH) {
+	if (digitalRead(PIN_OLED_DATA) == LOW) {
 		MPRINTLN("OLED CLient : DATA Available PIN2 ");
 
 		Wire.requestFrom(I2C_ADDRESS_OLED_MASTER, OLEDMESSAGE_SIZE); // request 6 bytes from slave device #8

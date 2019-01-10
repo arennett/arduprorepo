@@ -16,6 +16,7 @@ class OledMessageQueue {
 public:
 	OledMessageQueue(byte pin_oled_data);
 	virtual ~OledMessageQueue();
+	void init();
 	void push(OledMessage* pMessage);
 	OledMessage* pop();
 	OledMessage* getLastEntry();

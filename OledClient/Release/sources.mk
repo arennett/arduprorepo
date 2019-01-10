@@ -42,9 +42,5 @@ libraries\Adafruit_SSD1306 \
 libraries\SPI\src \
 libraries\Wire\src \
 libraries\Wire\src\utility \
-libraries\XToolsLib\Release \
-libraries\XToolsLib\Release\core\coreLib \
-libraries\XToolsLib\Release\src \
 libraries\XToolsLib\src \
-libraries\XToolsLib\Release\core \
 
