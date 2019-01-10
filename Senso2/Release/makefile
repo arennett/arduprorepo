@@ -12,7 +12,6 @@ RM := del
 -include libraries\XToolsLib\src\subdir.mk
 -include libraries\Wire\src\utility\subdir.mk
 -include libraries\Wire\src\subdir.mk
--include libraries\SPI\src\subdir.mk
 -include libraries\Bounce2-master\subdir.mk
 -include core\core\subdir.mk
 -include objects.mk

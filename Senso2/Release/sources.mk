@@ -37,7 +37,6 @@ SUBDIRS := \
 . \
 core\core \
 libraries\Bounce2-master \
-libraries\SPI\src \
 libraries\Wire\src \
 libraries\Wire\src\utility \
 libraries\XToolsLib\src \
