@@ -1,12 +1,18 @@
 #include "Arduino.h"
 #include <tools.h>
+#include <Wire.h>
+#include <MqMessageQueue.h>
+#include <Bounce2.h>
+
 #include "senso.h"
 #include "SimpleTimer.h"
-#include "Bounce2.h"
 #include "pitches.h"
-#include <Wire.h>
 
-
+#define PIN_MQ_NEWDATA 2  // HIGH  ...data available
+#define I2C_ADDRESS  0x08
+CMqMessageQueue messageQueue(PIN_MQ_NEWDATA);
+void onRequestEvent();
+CMqMessage* pMessage=NULL;
 
 void ledWrite(tLedColor color, unsigned char state);
 void registerWrite(int whichPin, int whichState);
@@ -45,6 +51,24 @@ void setup() {
 	pinMode(PIN_DATA, OUTPUT);
 	pinMode(PIN_CLOCK, OUTPUT);
 
+	pinMode(PIN_MQ_NEWDATA,OUTPUT);
+		Wire.begin(I2C_ADDRESS);                // join i2c bus with address #8
+		Wire.onRequest(onRequestEvent);
+		XPRINTFREE;
+		messageQueue.init();
+		pMessage = new CMqMessage(tMqCmd::game_init,0,0);
+		messageQueue.push(pMessage);
+
+
+
+
+		/*
+		delay(3000);
+		pMessage = new OledMessage(tOledCmd::CMD_BMP_GAME_SELECT);
+		messageQueue.push(pMessage);
+		pMessage = new OledMessage(tOledCmd::CMD_UPDATE);
+		messageQueue.push(pMessage);*/
+
 	for (int i = 0; i < ANZ_COLORS; i++) {
 		pinMode(pinButton[i], INPUT_PULLUP);
 		pinMode(pinLED[i], OUTPUT);
@@ -73,6 +97,8 @@ void startGame() {
 	seqIntervall = MAX_INTERVAL;
 
 	timer.resetDelay(seqIntervall, timerIdflashNext);
+	pMessage = new CMqMessage(tMqCmd::game_start,0,0);
+	messageQueue.push(pMessage);
 
 
 	animationLEDS(tLedAnimation::flicker3, center);
@@ -337,5 +363,19 @@ void animationLEDS(tLedAnimation ledAnimation, tLedColor ledColor) {
 			}
 			break;
 
+	}
+}
+
+void onRequestEvent() {
+	XPRINTLNS("onRequestEvent()");
+	if (!messageQueue.isEmpty()){
+		CMqMessage* pMessage = messageQueue.pop();
+		MPRINTLNSVAL("onRequestEvent:: CMD" ,  pMessage->getCmd());
+		MPRINTLNSVAL("onRequestEvent:: SIZE" , pMessage->getSize());
+		MPRINTLNSVAL("onRequestEvent:: CMD" , pMessage->getCmd());
+
+		Wire.write(pMessage->getCmd());
+		Wire.write(pMessage->getSize());
+		delete pMessage;
 	}
 }

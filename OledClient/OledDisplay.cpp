@@ -23,8 +23,12 @@
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-
+#include "Arduino.h"
 #include "OledDisplay.h"
+#include <Adafruit_SSD1306.h>
+//#include <SPI.h>
+//#include <Wire.h>
+#include <Adafruit_GFX.h>
 
 Adafruit_SSD1306 display(OLED_RESET);
 
@@ -39,12 +43,17 @@ void OledDisplay::init() {
 
 	// by default, we'll generate the high voltage from the 3.3v line internally! (neat!)
 	 display.begin(SSD1306_SWITCHCAPVCC, 0x3C);  // initialize with the I2C addr 0x3D (for the 128x64)
+	 display.display();
+	 delay(2000);
+	 clear();
+
 	 // init done
 }
 
 void OledDisplay::clear() {
 	if (OLED_INACTIVE) return;
 	display.clearDisplay();
+	update();
 }
 
 void OledDisplay::update() {

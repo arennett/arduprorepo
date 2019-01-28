@@ -36,11 +36,11 @@
 #define TONE_PIN 13
 
 
-
-
 typedef enum {center=0,yellow,blue,green,red,white,ANZ_COLORS=white+1} tLedColor;
 typedef enum {round3,flicker1,flicker3,flicker6} tLedAnimation;
 typedef enum {off,demo,iotest,listening,writing} tSequenceMode;
+typedef enum {game_init=0,game_start,key_yellow,key_blue,key_green,key_red,key_white} tMqCmd;
+
 
 unsigned char pinButton[]  	=	{IN_CENTER,IN_Y,IN_B,IN_G,IN_R,IN_W};
 unsigned int  tones[] 		=	{NOTE_C4,NOTE_G4,NOTE_A4,NOTE_C3,NOTE_B0};

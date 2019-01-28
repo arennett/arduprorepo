@@ -10,12 +10,6 @@
 #define OLEDDISPLAY_H
 
 
-#include <Adafruit_SSD1306.h>
-//#include <SPI.h>
-//#include <Wire.h>
-#include <Adafruit_GFX.h>
-
-
 
 #define NUMFLAKES 10
 #define XPOS 0

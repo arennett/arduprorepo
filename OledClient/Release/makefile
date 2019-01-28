@@ -9,12 +9,19 @@ RM := del
 # All of the sources participating in the build are defined here
 -include sources.mk
 -include subdir.mk
+-include libraries\XWiredQueue\src\subdir.mk
+-include libraries\XWiredQueue\Release\src\subdir.mk
+-include libraries\XWiredQueue\Release\libraries\XToolsLib\src\subdir.mk
+-include libraries\XWiredQueue\Release\libraries\Wire\src\utility\subdir.mk
+-include libraries\XWiredQueue\Release\libraries\Wire\src\subdir.mk
+-include libraries\XWiredQueue\Release\core\coreLib\subdir.mk
+-include libraries\XWiredQueue\Release\subdir.mk
 -include libraries\XToolsLib\src\subdir.mk
 -include libraries\Wire\src\utility\subdir.mk
 -include libraries\Wire\src\subdir.mk
 -include libraries\SPI\src\subdir.mk
+-include libraries\Queue\src\subdir.mk
 -include libraries\Adafruit_SSD1306\subdir.mk
--include libraries\Adafruit_GFX_Library\fontconvert\subdir.mk
 -include libraries\Adafruit_GFX_Library\subdir.mk
 -include core\core\subdir.mk
 -include objects.mk

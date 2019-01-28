@@ -1,39 +1,53 @@
 #include "Arduino.h"
 #include <Wire.h>
 #include <tools.h>
-#include "OledMessageQueue.h"
+#include <WQDefines.h>
+#include <WQWriter.h>
 
-#define PIN_OLED_DATA 2  // HIGH  ...data available
+#define PIN_MQ_NEWDATA 2  // HIGH  ...data available
 #define I2C_ADDRESS  0x08
-OledMessageQueue messageQueue(PIN_OLED_DATA);
-void onRequestEvent();
-OledMessage* pMessage=NULL;
+
+typedef enum {game_init=0,game_start,key_yellow,key_blue,key_green,key_red,key_white} tMqCmd;
+
+WQWriter wqWriter;
+
+void onRequestHandler();
+
+
 //The setup function is called once at startup of the sketch
 void setup()
 {
 	Serial.begin(9600);
 	XPRINTLNS("");
-	XPRINTLNS("OLED MASTER");
-	MPRINTLN("MPRINT IS ON");
-	XPRINTFREE;
-	pinMode(PIN_OLED_DATA,OUTPUT);
-	Wire.begin(I2C_ADDRESS);                // join i2c bus with address #8
-	Wire.onRequest(onRequestEvent);
-	XPRINTFREE;
-	messageQueue.init();
-	pMessage = new OledMessage(tOledCmd::CMD_CLEAR);
-	messageQueue.push(pMessage);
-	pMessage = new OledMessage(tOledCmd::CMD_BMP_START);
-	messageQueue.push(pMessage);
-	pMessage = new OledMessage(tOledCmd::CMD_UPDATE);
-	messageQueue.push(pMessage);
-	delay(3000);
-	pMessage = new OledMessage(tOledCmd::CMD_BMP_GAME_SELECT);
-	messageQueue.push(pMessage);
-	pMessage = new OledMessage(tOledCmd::CMD_UPDATE);
-	messageQueue.push(pMessage);
+	XPRINTLNS("OledMaster::setup");
+	MPRINTLN("OledMaster:MPRINT IS ON");
+	wqWriter.init(PIN_MQ_NEWDATA, I2C_ADDRESS, onRequestHandler);
 
-// Add your initialization code here
+
+
+	tWQMessage wqMess;
+	memset(&wqMess,0,sizeof(tWQMessage));
+	MPRINTLN("OledMaster::setup: enqueue some messages now");
+	XFLUSH;
+	wqMess.cmd = tMqCmd::game_init;
+	wqWriter.write(wqMess);
+	wqMess.cmd = tMqCmd::game_start;
+	wqWriter.write(wqMess);
+	wqMess.cmd = tMqCmd::key_yellow;
+	wqWriter.write(wqMess);
+	wqMess.cmd = tMqCmd::key_blue;
+	wqWriter.write(wqMess);
+	wqMess.cmd = tMqCmd::key_green;
+	wqWriter.write(wqMess);
+	wqMess.cmd = tMqCmd::key_red;
+	wqWriter.write(wqMess);
+	wqMess.cmd = tMqCmd::key_white;
+	wqWriter.write(wqMess);
+	MPRINTLN("OledMaster::setup: messages queued");
+
+	XFLUSH;
+
+	// Add your initialization code here
 }
 
 // The loop function is called in an endless loop
@@ -67,22 +81,15 @@ void loop()
 	if (i > 40) {
 		i=0;
 	}*/
-	delay(300);
+	//delay(30);
 
 
 //Add your repeated code here
 }
 
-void onRequestEvent() {
-	XPRINTLNS("onRequestEvent()");
-	if (!messageQueue.isEmpty()){
-		OledMessage* pMessage = messageQueue.pop();
-		for (int i= 0; i < pMessage->getParamsSize()+2 ;i++) {
-			MPRINTLNSVAL("WRITE :" , pMessage->buffer[i]);
-		}
-		Wire.write(pMessage->buffer, OLEDMESSAGE_SIZE); // respond with message of 6 bytes
+void onRequestHandler() {
 
-		delete pMessage;
-	}
+	wqWriter.onRequestEvent();
+	XPRINTFREE;
 }
 

@@ -1,91 +1,81 @@
 #include "Arduino.h"
 #include <Wire.h>
-#include "OledDisplay.h"
-#include <OledMessage.h>
-#define MPRINT_ON
+#include <Adafruit_SSD1306.h>
+//#define MPRINT_ON
 #include <tools.h>
+#include <WQDefines.h>
+#include <WQReader.h>
+#include "OledDisplay.h"
 #include "bitmaps.h"
 
 
-#define PIN_OLED_DATA 2  // HIGH  ...data available
-
+#define PIN_MQ_NEWDATA 2  // HIGH  ...data available
+typedef enum {game_init=0,game_start,key_yellow,key_blue,key_green,key_red,key_white} tMqCmd;
 
 OledDisplay oledDisplay;
 #define I2C_ADDRESS_OLED_MASTER  0x08
 int freeRam2();
+bool receivedData =false;
 
-OledMessage oledMessage;
+WQReader wqReader(PIN_MQ_NEWDATA, I2C_ADDRESS_OLED_MASTER);
+tWQMessage wqMessage;
+
 void setup() {
 	Serial.begin(9600);
 
 	XPRINTLNS("");
 	XPRINTLNS("OLED CLIENT V1");
 	MPRINTLN("MPRINT IS ON");
-	pinMode(PIN_OLED_DATA, INPUT_PULLUP);
-
+	wqReader.init();
 	oledDisplay.init();
+	oledDisplay.drawBitMap(0, 0, bmp_startscreen, SSD1306_LCDWIDTH, SSD1306_LCDHEIGHT, BLACK,WHITE);
 
 	XPRINTFREE;
 	Serial.flush();
 }
 
 // The loop function is called in an endless loop
-void loop() {
-
-	if (digitalRead(PIN_OLED_DATA) == LOW) {
+void loop(){
+	receivedData=false;
+	if (wqReader.process(wqMessage)) {
 		MPRINTLN("OLED CLient : DATA Available PIN2 ");
-
-		Wire.requestFrom(I2C_ADDRESS_OLED_MASTER, OLEDMESSAGE_SIZE); // request 6 bytes from slave device #8
-		byte idx = 0;
-		MPRINTLNSVAL("OLED CLient : BYTES Available WIRE : ",Wire.available());
-
-
-		while (Wire.available() && idx < OLEDMESSAGE_SIZE) { // slave may send less than requested
-			oledMessage.buffer[idx] = Wire.read(); // receive a byte as character
-			MPRINTLNSVAL("OLED CLient : READ idx: ", oledMessage.buffer[idx]);
-			++idx;
-		}
-
-		if (idx > 0) {
-			MPRINTLNSVAL("OLED CLient : cmd: ",oledMessage.getCmd());
-			tParams* pPar=oledMessage.getTParams();
-			switch  (oledMessage.getCmd()) {
-			case tOledCmd::CMD_UPDATE:
+		MPRINTLNSVAL("OLED CLient : CMD: ", wqMessage.cmd);
+		switch  (wqMessage.cmd) {
+		/*	case tMqCmd::CMD_UPDATE:
 				MPRINTLNS("OLED CLient : CMD_UPDATE");
 				oledDisplay.update();
 				break;
 
-			case tOledCmd::CMD_CLEAR:
+			case tMqCmd::CMD_CLEAR:
 				MPRINTLNS("OLED CLient : CMD_CLEAR");
 				oledDisplay.clear();
 				break;
-			case tOledCmd::CMD_LINE:
+			case tMqCmd::CMD_LINE:
 				MPRINTLNS("OLED CLient : CMD_LINE");
 				oledDisplay.drawLine(pPar->a.p0.x1,pPar->a.p1.y1, pPar->a.p2.x2, pPar->a.p3.y2, pPar->a.color);
 				break;
-			case tOledCmd::CMD_RECTANGL:
+			case tMqCmd::CMD_RECTANGL:
 				MPRINTLNS("OLED CLient : CMD_RECTANG");
 				oledDisplay.drawRectangle(pPar->a.p0.x1,pPar->a.p1.y1, pPar->a.p2.x2, pPar->a.p3.y2, pPar->a.color);
 				break;
 
-			case tOledCmd::CMD_CIRCLE:
+			case tMqCmd::CMD_CIRCLE:
 				MPRINTLNS("OLED CLient : CMD_CIRCLE");
 				oledDisplay.drawCircle(pPar->a.p0.x1,pPar->a.p1.y1, pPar->a.p2.r, pPar->a.color);
 				break;
-
-			case tOledCmd::CMD_BMP_START: // main Scree
-				MPRINTLNS("OLED CLient : CMD_BMP_START");
+*/
+			case tMqCmd::game_init: // main Scree
+				MPRINTLNS("OLED CLient:  tMqCmd::game_init");
 				oledDisplay.drawBitMap(0, 0, bmp_startscreen, SSD1306_LCDWIDTH, SSD1306_LCDHEIGHT, BLACK,WHITE);
 				break;
-			case tOledCmd::CMD_BMP_GAME_SELECT: // main Scree
-				MPRINTLNS("OLED CLient : CMD_BMP_GAME_SELECT");
+			case tMqCmd::game_start: // main Scree
+				MPRINTLNS("OLED CLient : tMqCmd::game_start");
 				oledDisplay.drawBitMap(0, 0, bmp_screen_gameselect, SSD1306_LCDWIDTH, SSD1306_LCDHEIGHT, BLACK,WHITE);
 				break;
 			}
-		}
 
 	}else {
-		MPRINTLN("OLED CLient : NO DATA");
+		//MPRINTLN("OLED CLient : NO DATA");
 	}
 
 }

@@ -42,6 +42,16 @@
 			<locationURI>ECLIPSE_HOME/arduinoPlugin/packages/arduino/hardware/avr/1.6.23/variants/eightanaloginputs</locationURI>
 		</link>
 		<link>
+			<name>libraries/ArduinoQueue</name>
+			<type>2</type>
+			<locationURI>ECLIPSE_HOME/arduinoPlugin/libraries/ArduinoQueue/1.0.1</locationURI>
+		</link>
+		<link>
+			<name>libraries/Queue</name>
+			<type>2</type>
+			<locationURI>ECLIPSE_HOME/arduinoPlugin/libraries/Queue/1.6.0</locationURI>
+		</link>
+		<link>
 			<name>libraries/Wire</name>
 			<type>2</type>
 			<locationURI>ECLIPSE_HOME/arduinoPlugin/packages/arduino/hardware/avr/1.6.23/libraries/Wire</locationURI>
@@ -50,6 +60,11 @@
 			<name>libraries/XToolsLib</name>
 			<type>2</type>
 			<location>C:/Users/User/git/ardulibrepo/XToolsLib</location>
+		</link>
+		<link>
+			<name>libraries/XWiredQueue</name>
+			<type>2</type>
+			<location>C:/Users/User/git/ardulibrepo/XWiredQueue</location>
 		</link>
 	</linkedResources>
 </projectDescription>

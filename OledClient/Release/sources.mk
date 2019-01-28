@@ -37,10 +37,17 @@ SUBDIRS := \
 . \
 core\core \
 libraries\Adafruit_GFX_Library \
-libraries\Adafruit_GFX_Library\fontconvert \
 libraries\Adafruit_SSD1306 \
+libraries\Queue\src \
 libraries\SPI\src \
 libraries\Wire\src \
 libraries\Wire\src\utility \
 libraries\XToolsLib\src \
+libraries\XWiredQueue\Release \
+libraries\XWiredQueue\Release\core\coreLib \
+libraries\XWiredQueue\Release\libraries\Wire\src \
+libraries\XWiredQueue\Release\libraries\Wire\src\utility \
+libraries\XWiredQueue\Release\libraries\XToolsLib\src \
+libraries\XWiredQueue\Release\src \
+libraries\XWiredQueue\src \
 
