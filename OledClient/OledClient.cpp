@@ -1,8 +1,8 @@
 #include "Arduino.h"
 #include <Wire.h>
 #include <Adafruit_SSD1306.h>
-//#define MPRINT_ON
-#include <tools.h>
+#define MPRINT_ON
+#include <XTools.h>
 #include <WQDefines.h>
 #include <WQReader.h>
 #include "OledDisplay.h"

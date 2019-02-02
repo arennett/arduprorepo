@@ -18,9 +18,14 @@
 #define OLED_RESET 4
 #define OLED_INACTIVE false
 
-
+#define OLED_CMDS_START 101
+#define OLED_CMDS_START 200
 #define LOGO16_GLCD_HEIGHT 16
 #define LOGO16_GLCD_WIDTH  16
+
+typedef enum {init=OLED_CMDS_START,clear,update,line,rectangle,circle,bitmap} tOledCmd;
+
+
 static const unsigned char PROGMEM logo16_glcd_bmp[] =
 { B00000000, B11000000,
   B00000001, B11000000,

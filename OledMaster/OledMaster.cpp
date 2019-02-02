@@ -1,8 +1,8 @@
 #include "Arduino.h"
 #include <Wire.h>
-#include <tools.h>
 #include <WQDefines.h>
 #include <WQWriter.h>
+#include <XTools.h>
 
 #define PIN_MQ_NEWDATA 2  // HIGH  ...data available
 #define I2C_ADDRESS  0x08

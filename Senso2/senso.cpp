@@ -1,19 +1,16 @@
 #include "Arduino.h"
-#include <tools.h>
 #include <Wire.h>
-#include <MqMessageQueue.h>
 #include <Bounce2.h>
-
-#include "senso.h"
+#include <WQDefines.h>
+#include <WQWriter.h>
+#include <XTools.h>
+#include "Senso.h"
 #include "SimpleTimer.h"
 #include "pitches.h"
 
 #define PIN_MQ_NEWDATA 2  // HIGH  ...data available
-#define I2C_ADDRESS  0x08
-CMqMessageQueue messageQueue(PIN_MQ_NEWDATA);
+#define I2C_MASTER_ADDRESS  0x08
 void onRequestEvent();
-CMqMessage* pMessage=NULL;
-
 void ledWrite(tLedColor color, unsigned char state);
 void registerWrite(int whichPin, int whichState);
 void checkButtons();

@@ -26,11 +26,12 @@
 #include "Arduino.h"
 #include "OledDisplay.h"
 #include <Adafruit_SSD1306.h>
-//#include <SPI.h>
-//#include <Wire.h>
+#include <SPI.h>
+#include <Wire.h>
 #include <Adafruit_GFX.h>
 
 Adafruit_SSD1306 display(OLED_RESET);
+
 
 
 OledDisplay::OledDisplay() {
