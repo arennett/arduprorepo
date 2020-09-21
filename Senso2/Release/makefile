@@ -9,10 +9,11 @@ RM := del
 # All of the sources participating in the build are defined here
 -include sources.mk
 -include subdir.mk
+-include libraries\XWiredQueue\src\subdir.mk
 -include libraries\XToolsLib\src\subdir.mk
--include libraries\XToolsLib\oldstuff\subdir.mk
 -include libraries\Wire\src\utility\subdir.mk
 -include libraries\Wire\src\subdir.mk
+-include libraries\SoftwareSerial\src\subdir.mk
 -include libraries\SPI\src\subdir.mk
 -include libraries\Bounce2-master\subdir.mk
 -include libraries\Adafruit_SSD1306\subdir.mk

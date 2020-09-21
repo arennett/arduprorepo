@@ -3,14 +3,22 @@
 #include <Bounce2.h>
 #include <WQDefines.h>
 #include <WQWriter.h>
+#include <SoftwareSerial.h>
 #include <XTools.h>
+
+#include <Senso2def.h>
+
 #include "Senso.h"
 #include "SimpleTimer.h"
 #include "pitches.h"
 
-#define PIN_MQ_NEWDATA 2  // HIGH  ...data available
+
+#define PIN_WQ_NEWDATA 2  // LOW  ...data available
+#define PIN_RX_SOUND 9   // soundmodul RX
+#define PIN_TX_SOUND 10  // soundmodul TX
+
 #define I2C_MASTER_ADDRESS  0x08
-void onRequestEvent();
+void wqOnRequest();
 void ledWrite(tLedColor color, unsigned char state);
 void registerWrite(int whichPin, int whichState);
 void checkButtons();
@@ -36,7 +44,9 @@ int lastSeqElIdx = -1;
 int timerIdflashNext, timerIdSpeedUp;
 tLedColor colorSequence[MAX_SEQUENCE_LENGTH];
 Bounce bouncer[ANZ_COLORS - 1];
-#define MPRINT_ON
+WQWriter wqWriter;
+tWQMessage wqMessage;
+SoftwareSerial sndSerial(PIN_RX_SOUND, PIN_TX_SOUND);
 void setup() {
 
 	Serial.begin(9600);
@@ -44,27 +54,16 @@ void setup() {
 	XPRINTLNS("SENSO 2");
 	XPRINTFREE;
 
+	wqWriter.init(PIN_WQ_NEWDATA, I2C_MASTER_ADDRESS, wqOnRequest);
+
 	pinMode(PIN_LATCH, OUTPUT);
 	pinMode(PIN_DATA, OUTPUT);
 	pinMode(PIN_CLOCK, OUTPUT);
 
-	pinMode(PIN_MQ_NEWDATA,OUTPUT);
-		Wire.begin(I2C_ADDRESS);                // join i2c bus with address #8
-		Wire.onRequest(onRequestEvent);
-		XPRINTFREE;
-		messageQueue.init();
-		pMessage = new CMqMessage(tMqCmd::game_init,0,0);
-		messageQueue.push(pMessage);
+	sndSerial.begin(9600);
 
-
-
-
-		/*
-		delay(3000);
-		pMessage = new OledMessage(tOledCmd::CMD_BMP_GAME_SELECT);
-		messageQueue.push(pMessage);
-		pMessage = new OledMessage(tOledCmd::CMD_UPDATE);
-		messageQueue.push(pMessage);*/
+	wqMessage.cmd=tSenso2Cmd::game_init;
+	wqWriter.write(wqMessage);
 
 	for (int i = 0; i < ANZ_COLORS; i++) {
 		pinMode(pinButton[i], INPUT_PULLUP);
@@ -87,20 +86,25 @@ void loop() {
 }
 
 void startGame() {
-	XPRINTLNS("<<<<<<<<<<<<<<<<<<<<<<<<start game>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n");
+	XPRINTLNS(
+			"<<<<<<<<<<<<<<<<<<<<<<<<start game>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n");
 
 	memset(colorSequence, 0, MAX_SEQUENCE_LENGTH);
 
 	seqIntervall = MAX_INTERVAL;
 
 	timer.resetDelay(seqIntervall, timerIdflashNext);
-	pMessage = new CMqMessage(tMqCmd::game_start,0,0);
-	messageQueue.push(pMessage);
-
+	wqMessage.cmd=tSenso2Cmd::game_start;
+	wqWriter.write(wqMessage);
 
 	animationLEDS(tLedAnimation::flicker3, center);
 	lastSeqElIdx = -1;
 	setSequenceMode(tSequenceMode::writing);
+
+	wqMessage.cmd=tSenso2Cmd::new_length;
+	wqMessage.msg.data.int16=0;
+	MPRINTLNSVAL("checkButtons:: seqButtonIdx: ",wqMessage.msg.data.int16);
+	wqWriter.write(wqMessage);
 
 }
 
@@ -125,11 +129,7 @@ void checkButtons() {
 
 				if (currentSeqMode == tSequenceMode::listening) {
 					seqButtonIdx++;
-					MPRINTLNSVAL("checkButtons:: listening mode / button: ",colorButton);
-					MPRINTLNSVAL("checkButtons:: seqButtonIdx :" ,seqButtonIdx);
-					MPRINTLNSVAL("checkButtons:: expected color:" ,colorSequence[seqButtonIdx]);
-
-
+					MPRINTLNSVAL("checkButtons:: listening mode / button: ",colorButton); MPRINTLNSVAL("checkButtons:: seqButtonIdx :" ,seqButtonIdx); MPRINTLNSVAL("checkButtons:: expected color:" ,colorSequence[seqButtonIdx]);
 
 					if (colorButton == colorSequence[seqButtonIdx]) {
 
@@ -143,6 +143,11 @@ void checkButtons() {
 							animationLEDS(flicker1, center);
 							MPRINTLNS("checkButtons:: yes! start from beginning");
 							setSequenceMode(tSequenceMode::writing);
+							wqMessage.cmd=tSenso2Cmd::new_length;
+    						wqMessage.msg.data.int16=lastSeqElIdx+1;
+    						MPRINTLNSVAL("checkButtons:: new_length: ",wqMessage.msg.data.int16);
+    						wqWriter.write(wqMessage);
+
 						}
 
 					} else {
@@ -171,6 +176,7 @@ bool isButtonPressed(tLedColor color) {
 
 	if (isPressed) {
 		ledWrite(color, HIGH);
+
 	}
 	if (isReleased) {
 		ledWrite(color, LOW);
@@ -185,8 +191,13 @@ bool isButtonPressed(tLedColor color) {
 void ledWrite(tLedColor color, unsigned char state) {
 	registerWrite((unsigned char) pinLED[color], state);
 	if (state == HIGH) {
+		wqMessage.cmd=tSenso2Cmd::led_write;
+		wqMessage.msg.data.u_int16=color;
+		wqWriter.write(wqMessage);
+
 		MPRINTLNSVAL("ledWrite:: LED on:",color);
 		tone(TONE_PIN, tones[color]);
+
 	} else {
 		noTone(TONE_PIN);
 	}
@@ -194,20 +205,20 @@ void ledWrite(tLedColor color, unsigned char state) {
 
 void registerWrite(int whichPin, int whichState) {
 // the bits you want to send
-  byte bitsToSend = 0;
+	byte bitsToSend = 0;
 
-  // turn off the output so the pins don't light up
-  // while you're shifting bits:
-  digitalWrite(PIN_LATCH, LOW);
+	// turn off the output so the pins don't light up
+	// while you're shifting bits:
+	digitalWrite(PIN_LATCH, LOW);
 
-  // turn on the next highest bit in bitsToSend:
-  bitWrite(bitsToSend, whichPin, whichState);
+	// turn on the next highest bit in bitsToSend:
+	bitWrite(bitsToSend, whichPin, whichState);
 
-  // shift the bits out:
-  shiftOut(PIN_DATA, PIN_CLOCK, MSBFIRST, bitsToSend);
+	// shift the bits out:
+	shiftOut(PIN_DATA, PIN_CLOCK, MSBFIRST, bitsToSend);
 
-    // turn on the output so the LEDs can light up:
-  digitalWrite(PIN_LATCH, HIGH);
+	// turn on the output so the LEDs can light up:
+	digitalWrite(PIN_LATCH, HIGH);
 
 }
 
@@ -240,8 +251,7 @@ void flashNext() {
 			|| (currentSeqMode == tSequenceMode::demo)) {
 
 		seqFlashIdx++;
-		MPRINTLNSVAL("flashNext:: seqFlashIdx:",  seqFlashIdx);
-		MPRINTLNSVAL("flashNext:: lastSeqElIdx:", lastSeqElIdx);
+		MPRINTLNSVAL("flashNext:: seqFlashIdx:", seqFlashIdx); MPRINTLNSVAL("flashNext:: lastSeqElIdx:", lastSeqElIdx);
 		speedUp();
 		ledWrite(currentColor, LOW);
 		delay(100);
@@ -298,7 +308,7 @@ tLedColor getNextColor() {
 			currentColor = colorSequence[seqFlashIdx];
 			MPRINT("getNextColor:: seq  color: ");
 		} else {
-			currentColor = (tLedColor) (random(ANZ_COLORS)+1);
+			currentColor = (tLedColor) (random(ANZ_COLORS) + 1);
 			//if (currentColor == red) {
 			//	currentColor = yellow;
 			//} else {
@@ -310,69 +320,62 @@ tLedColor getNextColor() {
 			MPRINT("getNextColor:: new  color: ");
 		}
 
-	}
-	MPRINTLN(currentColor);
+	} MPRINTLN(currentColor);
 	return currentColor;
 
 }
 
 void animationLEDS(tLedAnimation ledAnimation, tLedColor ledColor) {
 
-
 	switch (ledAnimation) {
 	case round3:
-				for (int i = 0; i < 3; i++) {
-					for (tLedColor col = yellow; col <= white; col= (tLedColor)(col+1)) {
-						ledWrite(col, HIGH);
-						delay(50);
-						ledWrite(col, LOW);
-						delay(100);
-
-					}
-
-				}
-				break;
-		case flicker1:
-			for (int i = 0; i < 1; i++) {
-					ledWrite(ledColor, HIGH);
-					delay(100);
-					ledWrite(ledColor, LOW);
-					delay(100);
+		for (int i = 0; i < 3; i++) {
+			for (tLedColor col = yellow; col <= white;
+					col = (tLedColor) (col + 1)) {
+				ledWrite(col, HIGH);
+				delay(50);
+				ledWrite(col, LOW);
+				delay(100);
 
 			}
-			break;
+
+		}
+		break;
+	case flicker1:
+		for (int i = 0; i < 1; i++) {
+			ledWrite(ledColor, HIGH);
+			delay(100);
+			ledWrite(ledColor, LOW);
+			delay(100);
+
+		}
+		break;
 	case flicker3:
-			for (int i = 0; i < 3; i++) {
-					ledWrite(ledColor, HIGH);
-					delay(100);
-					ledWrite(ledColor, LOW);
-					delay(100);
+		for (int i = 0; i < 3; i++) {
+			ledWrite(ledColor, HIGH);
+			delay(100);
+			ledWrite(ledColor, LOW);
+			delay(100);
 
-			}
-			break;
+		}
+		break;
 	case flicker6:
-			for (int i = 0; i < 6; i++) {
-					ledWrite(ledColor, HIGH);
-					delay(100);
-					ledWrite(ledColor, LOW);
-					delay(100);
+		for (int i = 0; i < 6; i++) {
+			ledWrite(ledColor, HIGH);
+			delay(100);
+			ledWrite(ledColor, LOW);
+			delay(100);
 
-			}
-			break;
+		}
+		break;
 
 	}
 }
 
-void onRequestEvent() {
-	XPRINTLNS("onRequestEvent()");
-	if (!messageQueue.isEmpty()){
-		CMqMessage* pMessage = messageQueue.pop();
-		MPRINTLNSVAL("onRequestEvent:: CMD" ,  pMessage->getCmd());
-		MPRINTLNSVAL("onRequestEvent:: SIZE" , pMessage->getSize());
-		MPRINTLNSVAL("onRequestEvent:: CMD" , pMessage->getCmd());
-
-		Wire.write(pMessage->getCmd());
-		Wire.write(pMessage->getSize());
-		delete pMessage;
+void wqOnRequest() {
+	tWQMessage* mess= wqWriter.onRequestEvent();
+	if (mess->cmd==tSenso2Cmd::led_write) {
+		XPRINTLN("wqWriter.onRequestEvent() led_write");
 	}
+
 }

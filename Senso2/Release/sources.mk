@@ -40,8 +40,9 @@ libraries\Adafruit_GFX_Library \
 libraries\Adafruit_SSD1306 \
 libraries\Bounce2-master \
 libraries\SPI\src \
+libraries\SoftwareSerial\src \
 libraries\Wire\src \
 libraries\Wire\src\utility \
-libraries\XToolsLib\oldstuff \
 libraries\XToolsLib\src \
+libraries\XWiredQueue\src \
 
